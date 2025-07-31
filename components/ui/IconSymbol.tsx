@@ -24,6 +24,8 @@ const MAPPING = {
   house: "home",
   person: "person",
   heart: "favorite",
+  gear: "settings",
+  bell: "notifications",
 } as IconMapping;
 
 /**

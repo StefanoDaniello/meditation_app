@@ -4,7 +4,15 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        // Colori primari basati sull'immagine
+        "primary-purple": "#7E57C2", // Simile al pulsante Music
+        "secondary-gray": "#E0E0E0", // Simile al pulsante Sounds
+        "text-gray": "#424242", // Testo sul pulsante Sounds
+        "gray-800": "#212121", // Testo dei titoli "New Releases", "Recently Played"
+      },
+    },
   },
   plugins: [],
 };
