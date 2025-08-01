@@ -1,10 +1,26 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const [activeButton, setActiveButton] = useState<"music" | "sound">("music");
+
+  // Funzione per ottenere le classi dinamiche
+  const getButtonClass = (buttonName: "music" | "sound") => {
+    return `rounded-full px-8 py-3 ${
+      activeButton === buttonName
+        ? "bg-purple-600 text-white border border-transparent" // Classe per lo stato attivo
+        : "bg-transparent text-purple-600 border-2 border-purple-600" // Classi per lo stato inattivo
+    }`;
+  };
+
+  const getIconColor = (buttonName: "music" | "sound") => {
+    return activeButton === buttonName ? "black" : "white";
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white pb-10">
       <ScrollView className="px-5">
@@ -24,16 +40,26 @@ export default function HomeScreen() {
         {/* Categorie */}
         <View className="flex-row gap-4 mb-8 items-center">
           <TouchableOpacity
+            className={getButtonClass("music")}
+            onPress={() => setActiveButton("music")}
             activeOpacity={0.6}
-            className="bg-purple-600 rounded-full px-10 py-3"
           >
-            <Text className="text-white font-semibold">Music</Text>
+            <Text
+              className={`font-semibold ${activeButton === "music" ? "text-white" : "text-purple-600"}`}
+            >
+              Music
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            className={getButtonClass("sound")}
+            onPress={() => setActiveButton("sound")}
             activeOpacity={0.6}
-            className="rounded-full px-8 py-3 border-2 border-purple-600"
           >
-            <Text className="text-purple-600 font-semibold">Sounds</Text>
+            <Text
+              className={`font-semibold ${activeButton === "sound" ? "text-white" : "text-purple-600"}`}
+            >
+              Sounds
+            </Text>
           </TouchableOpacity>
         </View>
 

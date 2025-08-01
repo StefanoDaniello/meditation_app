@@ -1,12 +1,16 @@
-// src/screens/MusicDetailScreen.tsx
 import { imageSources } from "@/assets/images"; // Importa la mappa delle immagini
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar, Text, TouchableOpacity, View } from "react-native";
 
 export default function MusicDetailScreen() {
+  const [buttonStates, setButtonStates] = useState({
+    heart: false,
+    pause: false,
+    clock: false,
+  });
   const params = useLocalSearchParams();
   const { imageKey, title } = params;
 
@@ -24,6 +28,26 @@ export default function MusicDetailScreen() {
       </View>
     );
   }
+
+  const handlePress = (buttonName: "heart" | "pause" | "clock") => {
+    setButtonStates((prevState) => ({
+      ...prevState, // Manteniamo lo stato degli altri bottoni
+      [buttonName]: !prevState[buttonName], // Invertiamo lo stato del bottone cliccato
+    }));
+  };
+
+  // Funzione per ottenere le classi dinamiche
+  const getButtonClass = (buttonName: "heart" | "pause" | "clock") => {
+    return `rounded-full px-8 py-3 ${
+      buttonStates[buttonName] // Controlla il valore booleano
+        ? "bg-white border border-transparent"
+        : "bg-transparent border border-white"
+    }`;
+  };
+
+  const getIconColor = (buttonName: "heart" | "pause" | "clock") => {
+    return buttonStates[buttonName] ? "black" : "white";
+  };
 
   return (
     <View className="flex-1">
@@ -52,19 +76,28 @@ export default function MusicDetailScreen() {
 
         {/* Sezione in basso: Tre bottoni */}
         <View className="absolute bottom-12 w-full flex-row justify-evenly items-center">
-          {/* Bottone 1: Riproduci */}
-          <TouchableOpacity className="bg-transparent rounded-full px-8 py-3 border border-white">
-            <IconSymbol size={24} name="heart" color="white" />
+          {/* Bottone 1: Cuore */}
+          <TouchableOpacity
+            className={getButtonClass("heart")}
+            onPress={() => handlePress("heart")}
+          >
+            <IconSymbol size={24} name="heart" color={getIconColor("heart")} />
           </TouchableOpacity>
 
           {/* Bottone 2: Pausa */}
-          <TouchableOpacity className="bg-transparent rounded-full px-8 py-3 border border-white">
-            <IconSymbol size={24} name="pause" color="white" />
+          <TouchableOpacity
+            className={getButtonClass("pause")}
+            onPress={() => handlePress("pause")}
+          >
+            <IconSymbol size={24} name="pause" color={getIconColor("pause")} />
           </TouchableOpacity>
 
-          {/* Bottone 3: Successiva */}
-          <TouchableOpacity className="bg-transparent rounded-full px-8 py-3 border border-white">
-            <IconSymbol size={24} name="clock" color="white" />
+          {/* Bottone 3: Orologio */}
+          <TouchableOpacity
+            className={getButtonClass("clock")}
+            onPress={() => handlePress("clock")}
+          >
+            <IconSymbol size={24} name="clock" color={getIconColor("clock")} />
           </TouchableOpacity>
         </View>
       </View>
