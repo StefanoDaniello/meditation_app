@@ -1,4 +1,6 @@
+import { imageSources } from "@/assets/images";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import music from "@/database/music.json";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -17,9 +19,10 @@ export default function HomeScreen() {
     }`;
   };
 
-  const getIconColor = (buttonName: "music" | "sound") => {
-    return activeButton === buttonName ? "black" : "white";
-  };
+  const filteredMusic = music.filter(
+    (item: any) => item.category === "new_releases"
+  );
+  const isMultiple = filteredMusic.length > 1;
 
   return (
     <SafeAreaView className="flex-1 bg-white pb-10">
@@ -66,115 +69,120 @@ export default function HomeScreen() {
         {/* New Releases */}
         <View className="mb-8">
           <Text className="text-3xl font-bold mb-4">New Releases</Text>
-          <TouchableOpacity
-            onPress={() =>
-              router.push({
-                pathname: "/screens/MusicDetailScreen", // Usa il pathname del file
-                params: {
-                  imageKey: "bosco",
-                  title: "Blue Night",
-                },
-              })
-            }
-            activeOpacity={0.8}
-            className="rounded-2xl overflow-hidden shadow-lg"
-          >
-            <Image
-              source={require("@/assets/images/music/bosco.jpg")}
-              style={{ width: "100%", height: 200 }}
-              className="rounded-2xl"
-            />
-            <View className="absolute top-6 left-6">
-              <Text className="text-white text-lg font-semibold">
-                Blue Night
-              </Text>
+          {isMultiple ? (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View className="flex-row gap-5">
+                {music
+                  .filter((item) => item.category === "new_releases")
+                  .map((item) => (
+                    <TouchableOpacity
+                      key={item.id}
+                      activeOpacity={0.8}
+                      className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                      onPress={() =>
+                        router.push({
+                          pathname: "/screens/MusicDetailScreen",
+                          params: {
+                            imageKey: item.imageKey,
+                            title: item.title,
+                            time: item.time,
+                          },
+                        })
+                      }
+                    >
+                      <Image
+                        source={
+                          imageSources[
+                            item.imageKey as keyof typeof imageSources
+                          ]
+                        }
+                        style={{ width: "100%", height: 300 }}
+                        className="rounded-2xl"
+                      />
+                      <View className="absolute top-6 left-6">
+                        <Text className="text-white text-lg font-semibold">
+                          {item.title}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))}
+              </View>
+            </ScrollView>
+          ) : (
+            <View>
+              {music
+                .filter((item) => item.category === "new_releases")
+                .map((item) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    activeOpacity={0.8}
+                    className=" rounded-2xl overflow-hidden shadow-lg"
+                    onPress={() =>
+                      router.push({
+                        pathname: "/screens/MusicDetailScreen",
+                        params: {
+                          imageKey: item.imageKey,
+                          title: item.title,
+                          time: item.time,
+                        },
+                      })
+                    }
+                  >
+                    <Image
+                      source={
+                        imageSources[item.imageKey as keyof typeof imageSources]
+                      }
+                      style={{ width: "100%", height: 300 }}
+                      className="rounded-2xl"
+                    />
+                    <View className="absolute top-6 left-6">
+                      <Text className="text-white text-lg font-semibold">
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
             </View>
-          </TouchableOpacity>
+          )}
         </View>
 
         {/* Recently Played */}
         <View className="mb-8">
           <Text className="text-3xl font-bold mb-4">Recently Played</Text>
-
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View className="flex-row gap-5">
-              {/* Immagine 1 */}
-              <TouchableOpacity
-                activeOpacity={0.8}
-                className="w-64 rounded-2xl overflow-hidden shadow-lg"
-                onPress={() =>
-                  router.push({
-                    pathname: "/screens/MusicDetailScreen",
-                    params: {
-                      imageKey: "falo",
-                      title: "Camping",
-                    },
-                  })
-                }
-              >
-                <Image
-                  source={require("@/assets/images/music/falo.webp")}
-                  style={{ width: "100%", height: 300 }}
-                  className="rounded-2xl"
-                />
-                <View className="absolute top-6 left-6">
-                  <Text className="text-white text-lg font-semibold">
-                    Camping
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              {/* Immagine 2 */}
-              <TouchableOpacity
-                activeOpacity={0.8}
-                className="w-64 rounded-2xl overflow-hidden shadow-lg"
-                onPress={() =>
-                  router.push({
-                    pathname: "/screens/MusicDetailScreen", // Usa il pathname del file
-                    params: {
-                      imageKey: "tramonto",
-                      title: "Sunset",
-                    },
-                  })
-                }
-              >
-                <Image
-                  source={require("@/assets/images/music/tramonto.jpg")}
-                  style={{ width: "100%", height: 300 }}
-                  className="rounded-2xl"
-                />
-                <View className="absolute top-6 left-6">
-                  <Text className="text-white text-lg font-semibold">
-                    Sunset
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              {/* Immagine 3 */}
-              <TouchableOpacity
-                activeOpacity={0.8}
-                className="w-64 rounded-2xl overflow-hidden shadow-lg"
-                onPress={() =>
-                  router.push({
-                    pathname: "/screens/MusicDetailScreen", // Usa il pathname del file
-                    params: {
-                      imageKey: "bosco",
-                      title: "Blue Night",
-                    },
-                  })
-                }
-              >
-                <Image
-                  source={require("@/assets/images/music/bosco.jpg")}
-                  style={{ width: "100%", height: 300 }}
-                  className="rounded-2xl"
-                />
-                <View className="absolute top-6 left-6">
-                  <Text className="text-white text-lg font-semibold">
-                    Blue Night
-                  </Text>
-                </View>
-              </TouchableOpacity>
+              {music
+                .filter((item: any) => item.category === "recently_played")
+                .map((item: any) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    activeOpacity={0.8}
+                    className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                    onPress={() =>
+                      router.push({
+                        pathname: "/screens/MusicDetailScreen",
+                        params: {
+                          imageKey: item.imageKey,
+                          title: item.title,
+                          time: item.time,
+                        },
+                      })
+                    }
+                  >
+                    <Image
+                      source={
+                        imageSources[item.imageKey as keyof typeof imageSources]
+                      }
+                      style={{ width: "100%", height: 300 }}
+                      className="rounded-2xl"
+                    />
+                    <View className="absolute top-6 left-6">
+                      <Text className="text-white text-lg font-semibold">
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
             </View>
           </ScrollView>
         </View>

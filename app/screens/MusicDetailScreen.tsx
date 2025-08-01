@@ -1,5 +1,7 @@
 import { imageSources } from "@/assets/images"; // Importa la mappa delle immagini
+import CircularProgressBar from "@/components/ui/CircleStatusBar";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import TimePicker from "@/components/ui/TimePicker"; // Importa il nuovo componente
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
@@ -12,7 +14,9 @@ export default function MusicDetailScreen() {
     clock: false,
   });
   const params = useLocalSearchParams();
-  const { imageKey, title } = params;
+  const { imageKey, title, time } = params;
+
+  const [meditationTime, setMeditationTime] = useState(time as string);
 
   // Cerca l'immagine nella mappa usando la chiave
   const imageSource =
@@ -29,11 +33,47 @@ export default function MusicDetailScreen() {
     );
   }
 
-  const handlePress = (buttonName: "heart" | "pause" | "clock") => {
+  const handleTimeSave = (newTime: string) => {
+    setMeditationTime(newTime);
     setButtonStates((prevState) => ({
-      ...prevState, // Manteniamo lo stato degli altri bottoni
-      [buttonName]: !prevState[buttonName], // Invertiamo lo stato del bottone cliccato
+      ...prevState,
+      clock: false,
     }));
+  };
+
+  const handleTimeCancel = () => {
+    setButtonStates((prevState) => ({
+      ...prevState,
+      clock: false,
+    }));
+  };
+  const handlePress = (buttonName: "heart" | "pause" | "clock") => {
+    setButtonStates((prevState) => {
+      // Logica per il bottone "Orologio"
+      if (buttonName === "clock") {
+        // Se si clicca "clock" e lo si attiva, metti in pausa il timer
+        if (!prevState.clock) {
+          return {
+            ...prevState,
+            clock: true,
+            pause: true, // Imposta 'pause' su true per fermare il timer
+          };
+        } else {
+          // Se si clicca "clock" e lo si disattiva, rimetti in gioco il timer (non lo avvii automaticamente)
+          return {
+            ...prevState,
+            clock: false,
+            pause: false, // Imposta 'pause' su false per permettere il riavvio
+          };
+        }
+      }
+
+      // Logica per gli altri bottoni
+      return {
+        ...prevState,
+        [buttonName]: !prevState[buttonName],
+      };
+    });
   };
 
   // Funzione per ottenere le classi dinamiche
@@ -74,6 +114,14 @@ export default function MusicDetailScreen() {
           <Text className="text-white text-2xl font-bold">{title}</Text>
         </View>
 
+        {/* Sezione in mezzo: Time */}
+        <View className="absolute inset-0 items-center justify-center">
+          <CircularProgressBar
+            time={meditationTime}
+            playing={buttonStates.pause ? false : true}
+          />
+        </View>
+
         {/* Sezione in basso: Tre bottoni */}
         <View className="absolute bottom-12 w-full flex-row justify-evenly items-center">
           {/* Bottone 1: Cuore */}
@@ -89,7 +137,11 @@ export default function MusicDetailScreen() {
             className={getButtonClass("pause")}
             onPress={() => handlePress("pause")}
           >
-            <IconSymbol size={24} name="pause" color={getIconColor("pause")} />
+            <IconSymbol
+              size={24}
+              name={`${buttonStates.pause ? "play" : "pause"}`}
+              color={getIconColor("pause")}
+            />
           </TouchableOpacity>
 
           {/* Bottone 3: Orologio */}
@@ -100,6 +152,14 @@ export default function MusicDetailScreen() {
             <IconSymbol size={24} name="clock" color={getIconColor("clock")} />
           </TouchableOpacity>
         </View>
+        {/* Condizionale per mostrare il selettore del tempo */}
+        {buttonStates.clock && (
+          <TimePicker
+            initialTime={meditationTime}
+            onSave={handleTimeSave}
+            onCancel={handleTimeCancel}
+          />
+        )}
       </View>
     </View>
   );
