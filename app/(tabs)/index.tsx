@@ -1,5 +1,6 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -40,6 +41,15 @@ export default function HomeScreen() {
         <View className="mb-8">
           <Text className="text-3xl font-bold mb-4">New Releases</Text>
           <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/screens/MusicDetailScreen", // Usa il pathname del file
+                params: {
+                  imageKey: "bosco",
+                  title: "Blue Night",
+                },
+              })
+            }
             activeOpacity={0.8}
             className="rounded-2xl overflow-hidden shadow-lg"
           >
@@ -66,6 +76,15 @@ export default function HomeScreen() {
               <TouchableOpacity
                 activeOpacity={0.8}
                 className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                onPress={() =>
+                  router.push({
+                    pathname: "/screens/MusicDetailScreen",
+                    params: {
+                      imageKey: "falo",
+                      title: "Camping",
+                    },
+                  })
+                }
               >
                 <Image
                   source={require("@/assets/images/music/falo.webp")}
@@ -83,6 +102,15 @@ export default function HomeScreen() {
               <TouchableOpacity
                 activeOpacity={0.8}
                 className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                onPress={() =>
+                  router.push({
+                    pathname: "/screens/MusicDetailScreen", // Usa il pathname del file
+                    params: {
+                      imageKey: "tramonto",
+                      title: "Sunset",
+                    },
+                  })
+                }
               >
                 <Image
                   source={require("@/assets/images/music/tramonto.jpg")}
@@ -100,6 +128,15 @@ export default function HomeScreen() {
               <TouchableOpacity
                 activeOpacity={0.8}
                 className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                onPress={() =>
+                  router.push({
+                    pathname: "/screens/MusicDetailScreen", // Usa il pathname del file
+                    params: {
+                      imageKey: "bosco",
+                      title: "Blue Night",
+                    },
+                  })
+                }
               >
                 <Image
                   source={require("@/assets/images/music/bosco.jpg")}
