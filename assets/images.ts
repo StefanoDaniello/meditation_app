@@ -1,8 +1,9 @@
-// Music images
 export const imageSources = {
+  // Immagini dai brani musicali
   falo: require("./images/music/falo.webp"),
   tramonto: require("./images/music/tramonto.jpg"),
   bosco: require("./images/music/bosco.jpg"),
+
   // Nuovi Aggiunti
   // pioggia: require("./images/music/pioggia.webp"),
   // alba: require("./images/music/alba.jpg"),
@@ -15,6 +16,7 @@ export const imageSources = {
   // libreria: require("./images/music/libreria.jpg"),
   // camino: require("./images/music/camino.webp"),
   // giungla: require("./images/music/giungla.jpg"),
+
   pioggia: require("./images/music/bosco.jpg"),
   alba: require("./images/music/bosco.jpg"),
   oceano: require("./images/music/bosco.jpg"),
@@ -26,4 +28,33 @@ export const imageSources = {
   libreria: require("./images/music/bosco.jpg"),
   camino: require("./images/music/bosco.jpg"),
   giungla: require("./images/music/bosco.jpg"),
+
+  // Immagini dai nuovi suoni ambientali
+  // ruscello: require("./images/sounds/ruscello.webp"),
+  // onde_oceano: require("./images/sounds/onde_oceano.jpg"),
+  // caffetteria: require("./images/sounds/caffetteria.jpg"),
+  // strada_tranquilla: require("./images/sounds/strada_tranquilla.jpg"),
+  // rumore_bianco: require("./images/sounds/rumore_bianco.webp"),
+  // onde_alfa: require("./images/sounds/onde_alfa.jpg"),
+  // pianoforte: require("./images/sounds/pianoforte.webp"),
+  // campanelle: require("./images/sounds/campanelle.jpg"),
+  // temporale: require("./images/sounds/temporale.webp"),
+  // uccelli_parco: require("./images/sounds/uccelli_parco.jpg"),
+  // rumore_marrone: require("./images/sounds/rumore_marrone.webp"),
+  // flauto_zen: require("./images/sounds/flauto_zen.jpg"),
+  // fuoco_camino: require("./images/sounds/fuoco_camino.webp"),
+
+  ruscello: require("./images/music/bosco.jpg"),
+  onde_oceano: require("./images/music/bosco.jpg"),
+  caffetteria: require("./images/music/bosco.jpg"),
+  strada_tranquilla: require("./images/music/bosco.jpg"),
+  rumore_bianco: require("./images/music/bosco.jpg"),
+  onde_alfa: require("./images/music/bosco.jpg"),
+  pianoforte: require("./images/music/bosco.jpg"),
+  campanelle: require("./images/music/bosco.jpg"),
+  temporale: require("./images/music/bosco.jpg"),
+  uccelli_parco: require("./images/music/bosco.jpg"),
+  rumore_marrone: require("./images/music/bosco.jpg"),
+  flauto_zen: require("./images/music/bosco.jpg"),
+  fuoco_camino: require("./images/music/bosco.jpg"),
 };

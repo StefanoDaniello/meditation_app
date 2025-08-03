@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "title": "Gentle Rain",
+    "category": "new_releases",
+    "imageKey": "pioggia",
+    "time": "30:00",
+    "music": "https://example.com/sounds/gentle_rain.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Forest Stream",
+    "category": "nature_sounds",
+    "imageKey": "ruscello",
+    "time": "25:00",
+    "music": "https://example.com/sounds/forest_stream.mp3"
+  },
+  {
+    "id": 3,
+    "title": "Ocean Waves",
+    "category": "nature_sounds",
+    "imageKey": "onde_oceano",
+    "time": "60:00",
+    "music": "https://example.com/sounds/ocean_waves.mp3"
+  },
+  {
+    "id": 4,
+    "title": "Coffee Shop",
+    "category": "city_ambience",
+    "imageKey": "caffetteria",
+    "time": "45:00",
+    "music": "https://example.com/sounds/coffee_shop.mp3"
+  },
+  {
+    "id": 5,
+    "title": "Quiet Street",
+    "category": "city_ambience",
+    "imageKey": "strada_tranquilla",
+    "time": "20:00",
+    "music": "https://example.com/sounds/quiet_street.mp3"
+  },
+  {
+    "id": 6,
+    "title": "White Noise",
+    "category": "focus_tones",
+    "imageKey": "rumore_bianco",
+    "time": "90:00",
+    "music": "https://example.com/sounds/white_noise.mp3"
+  },
+  {
+    "id": 7,
+    "title": "Alpha Waves",
+    "category": "focus_tones",
+    "imageKey": "onde_alfa",
+    "time": "15:00",
+    "music": "https://example.com/sounds/alpha_waves.mp3"
+  },
+  {
+    "id": 8,
+    "title": "Piano Melody",
+    "category": "calm_instruments",
+    "imageKey": "pianoforte",
+    "time": "12:30",
+    "music": "https://example.com/sounds/piano_melody.mp3"
+  },
+  {
+    "id": 9,
+    "title": "Wind Chimes",
+    "category": "calm_instruments",
+    "imageKey": "campanelle",
+    "time": "18:00",
+    "music": "https://example.com/sounds/wind_chimes.mp3"
+  },
+  {
+    "id": 10,
+    "title": "Thunderstorm",
+    "category": "nature_sounds",
+    "imageKey": "temporale",
+    "time": "40:00",
+    "music": "https://example.com/sounds/thunderstorm.mp3"
+  },
+  {
+    "id": 11,
+    "title": "Park Birds",
+    "category": "city_ambience",
+    "imageKey": "uccelli_parco",
+    "time": "20:00",
+    "music": "https://example.com/sounds/park_birds.mp3"
+  },
+  {
+    "id": 12,
+    "title": "White Noise - Brown",
+    "category": "focus_tones",
+    "imageKey": "rumore_marrone",
+    "time": "90:00",
+    "music": "https://example.com/sounds/brown_noise.mp3"
+  },
+  {
+    "id": 13,
+    "title": "Zen Flute",
+    "category": "calm_instruments",
+    "imageKey": "flauto_zen",
+    "time": "15:00",
+    "music": "https://example.com/sounds/zen_flute.mp3"
+  },
+  {
+    "id": 14,
+    "title": "Crackling Fire",
+    "category": "nature_sounds",
+    "imageKey": "fuoco_camino",
+    "time": "50:00",
+    "music": "https://example.com/sounds/crackling_fire.mp3"
+  }
+]
