@@ -118,6 +118,7 @@
 // };
 
 // export default TimePicker;
+import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import { Dimensions, Text, TouchableOpacity, View } from "react-native";
 import { IconSymbol } from "./IconSymbol";
@@ -130,20 +131,38 @@ interface TimePickerProps {
   onCancel: () => void;
 }
 
+// Funzione per convertire la stringa "HH:MM" in un oggetto Date
+const createDateFromTimeString = (timeString: string) => {
+  const [hours, minutes] = timeString.split(":").map(Number);
+  const date = new Date();
+  date.setHours(hours, minutes, 0, 0); // Imposta ore, minuti, secondi e millisecondi
+  return date;
+};
+
+// Funzione per formattare un oggetto Date in una stringa "HH:MM"
+const formatTimeToString = (date: Date) => {
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
 const TimePicker: React.FC<TimePickerProps> = ({
   initialTime,
   onSave,
   onCancel,
 }) => {
   // Stato per il tempo selezionato, inizializzato con il tempo iniziale
-  const [selectedTime, setSelectedTime] = useState(initialTime);
+  const [date, setDate] = useState(() => createDateFromTimeString(initialTime));
 
-  // Funzione per formattare i numeri in un formato a due cifre
-  const formatNumber = (num: number) => (num < 10 ? `0${num}` : num);
+  const onChange = (event: any, selectedDate: any) => {
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
 
-  // Estrae minuti e secondi dal tempo iniziale
-  const initialMinutes = parseInt(initialTime.split(":")[0], 10);
-  const initialSeconds = parseInt(initialTime.split(":")[1], 10);
+  // Funzione per resettare il tempo al valore iniziale
+  const resetTime = () => {
+    setDate(createDateFromTimeString(initialTime));
+  };
 
   return (
     <View
@@ -153,8 +172,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
         left: 0,
         right: 0,
         bottom: 0,
-        width: "100%",
-        height: "100%",
       }}
     >
       <TouchableOpacity
@@ -177,9 +194,9 @@ const TimePicker: React.FC<TimePickerProps> = ({
           bottom: 0,
           left: 0,
           right: 0,
-          minHeight: height / 3,
+          minHeight: height / 1.4,
         }}
-        className="bg-white rounded-t-3xl p-6"
+        className="bg-[#e2e2e2] rounded-t-3xl p-6"
       >
         {/* Sezione superiore con freccia per annullare */}
         <View className="flex-row justify-between items-center mb-4">
@@ -188,31 +205,44 @@ const TimePicker: React.FC<TimePickerProps> = ({
             activeOpacity={0.6}
             className="p-2"
           >
-            {/* L'icona per annullare */}
             <IconSymbol name="chevron.down" size={28} color="#000" />
           </TouchableOpacity>
-          {/* Spazio vuoto per allineare gli elementi */}
-          <View style={{ width: 28 }} />
-        </View>
-
-        {/* Sezione centrale con il tempo */}
-        <View className="flex-row justify-center items-center my-8">
-          <Text className="text-6xl font-bold">
-            {formatNumber(initialMinutes)}
-          </Text>
-          <Text className="text-6xl font-bold mx-2">:</Text>
-          <Text className="text-6xl font-bold">
-            {formatNumber(initialSeconds)}
-          </Text>
-        </View>
-
-        {/* Sezione inferiore con il bottone "Salva" */}
-        <View className="flex-row justify-end mt-auto">
           <TouchableOpacity
-            className="bg-blue-500 px-6 py-3 rounded-full"
-            onPress={() => onSave(selectedTime)}
+            onPress={resetTime}
+            activeOpacity={0.6}
+            className="p-2"
           >
-            <Text className="text-white text-lg font-bold">Salva</Text>
+            {/* <IconSymbol name="chevron.down" size={28} color="#000" /> */}
+            <Text className="text-purple-600 text-lg font-bold text-center">
+              Ripristina tempo
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Sezione centrale con il selettore */}
+        <View className="flex-row justify-center items-center my-8 ">
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={"time"}
+            is24Hour={true}
+            display="spinner"
+            onChange={onChange}
+            themeVariant="light"
+            accentColor="#9333ea"
+          />
+        </View>
+
+        {/* Nuovo contenitore per i pulsanti, senza mt-auto */}
+        <View className="mt-5">
+          {/* Pulsante Salva */}
+          <TouchableOpacity
+            className="bg-purple-600 px-6 py-3 rounded-xl"
+            onPress={() => onSave(formatTimeToString(date))}
+          >
+            <Text className="text-white text-lg font-bold text-center">
+              Salva
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
