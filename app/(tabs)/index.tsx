@@ -186,6 +186,84 @@ export default function HomeScreen() {
             </View>
           </ScrollView>
         </View>
+        <View className="mb-8">
+          <Text className="text-3xl font-bold mb-4">Daily Picks</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View className="flex-row gap-5">
+              {music
+                .filter((item: any) => item.category === "daily_picks")
+                .map((item: any) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    activeOpacity={0.8}
+                    className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                    onPress={() =>
+                      router.push({
+                        pathname: "/screens/MusicDetailScreen",
+                        params: {
+                          imageKey: item.imageKey,
+                          title: item.title,
+                          time: item.time,
+                        },
+                      })
+                    }
+                  >
+                    <Image
+                      source={
+                        imageSources[item.imageKey as keyof typeof imageSources]
+                      }
+                      style={{ width: "100%", height: 300 }}
+                      className="rounded-2xl"
+                    />
+                    <View className="absolute top-6 left-6">
+                      <Text className="text-white text-lg font-semibold">
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+            </View>
+          </ScrollView>
+        </View>
+        <View className="mb-8">
+          <Text className="text-3xl font-bold mb-4">Must Listen</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View className="flex-row gap-5">
+              {music
+                .filter((item: any) => item.category === "must_listen")
+                .map((item: any) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    activeOpacity={0.8}
+                    className="w-64 rounded-2xl overflow-hidden shadow-lg"
+                    onPress={() =>
+                      router.push({
+                        pathname: "/screens/MusicDetailScreen",
+                        params: {
+                          imageKey: item.imageKey,
+                          title: item.title,
+                          time: item.time,
+                        },
+                      })
+                    }
+                  >
+                    <Image
+                      source={
+                        imageSources[item.imageKey as keyof typeof imageSources]
+                      }
+                      style={{ width: "100%", height: 300 }}
+                      className="rounded-2xl"
+                    />
+                    <View className="absolute top-6 left-6">
+                      <Text className="text-white text-lg font-semibold">
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+            </View>
+          </ScrollView>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
