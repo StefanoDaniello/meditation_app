@@ -1,7 +1,7 @@
-import { imageSources } from "@/assets/images"; // Importa la mappa delle immagini
+import { imageSources } from "@/assets/images";
 import CircularProgressBar from "@/components/ui/CircleStatusBar";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import TimePicker from "@/components/ui/TimePicker"; // Importa il nuovo componente
+import TimePicker from "@/components/ui/TimePicker";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
