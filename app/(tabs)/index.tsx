@@ -162,6 +162,7 @@ export default function HomeScreen() {
                             imageKey: item.imageKey,
                             title: item.title,
                             time: item.time,
+                            favorite: `${item.favorite}`,
                           },
                         })
                       }
@@ -175,10 +176,20 @@ export default function HomeScreen() {
                         style={{ width: "100%", height: 300 }}
                         className="rounded-2xl"
                       />
-                      <View className="absolute top-6 left-6">
-                        <Text className="text-white text-lg font-semibold">
-                          {item.title}
-                        </Text>
+                      <View className="absolute top-6 left-0 w-full">
+                        <View className="flex flex-row justify-between mx-6">
+                          <Text className="text-white text-lg font-semibold">
+                            {item.title}
+                          </Text>
+
+                          {item.favorite && (
+                            <IconSymbol
+                              size={28}
+                              name="heart.fill"
+                              color={"white"}
+                            />
+                          )}
+                        </View>
                       </View>
                     </TouchableOpacity>
                   ))
@@ -197,6 +208,7 @@ export default function HomeScreen() {
                                 imageKey: item.imageKey,
                                 title: item.title,
                                 time: item.time,
+                                favorite: `${item.favorite}`,
                               },
                             })
                           }
@@ -210,10 +222,19 @@ export default function HomeScreen() {
                             style={{ width: "100%", height: 300 }}
                             className="rounded-2xl"
                           />
-                          <View className="absolute top-6 left-6">
-                            <Text className="text-white text-lg font-semibold">
-                              {item.title}
-                            </Text>
+                          <View className="absolute top-6 left-0 w-full">
+                            <View className="flex flex-row justify-between mx-6">
+                              <Text className="text-white text-lg font-semibold">
+                                {item.title}
+                              </Text>
+                              {item.favorite && (
+                                <IconSymbol
+                                  size={28}
+                                  name="heart.fill"
+                                  color={"white"}
+                                />
+                              )}
+                            </View>
                           </View>
                         </TouchableOpacity>
                       ))}

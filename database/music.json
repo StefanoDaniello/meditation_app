@@ -5,7 +5,8 @@
     "category": "new_releases",
     "imageKey": "bosco",
     "time": "5:00",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/falo/falo.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/falo/falo.mp3",
+    "favorite": false
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "category": "recently_played",
     "imageKey": "falo",
     "time": "10:00",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/falo/falo.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/falo/falo.mp3",
+    "favorite": false
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "category": "recently_played",
     "imageKey": "tramonto",
     "time": "0:05",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/falo/falo.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/falo/falo.mp3",
+    "favorite": false
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "category": "daily_picks",
     "imageKey": "pioggia",
     "time": "15:30",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/forest-rain/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/forest-rain/audio.mp3",
+    "favorite": false
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "category": "daily_picks",
     "imageKey": "alba",
     "time": "8:45",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/morning-breeze/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/morning-breeze/audio.mp3",
+    "favorite": false
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "category": "must_listen",
     "imageKey": "oceano",
     "time": "20:00",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/ocean-waves/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/ocean-waves/audio.mp3",
+    "favorite": false
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "category": "must_listen",
     "imageKey": "stelle",
     "time": "25:20",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/cosmic-journey/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/cosmic-journey/audio.mp3",
+    "favorite": false
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "category": "daily_picks",
     "imageKey": "montagna",
     "time": "7:15",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/mountain-stream/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/mountain-stream/audio.mp3",
+    "favorite": true
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "category": "must_listen",
     "imageKey": "deserto",
     "time": "12:10",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/desert-sunset/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/desert-sunset/audio.mp3",
+    "favorite": true
   },
   {
     "id": 10,
@@ -77,7 +86,8 @@
     "category": "daily_picks",
     "imageKey": "lago",
     "time": "9:50",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/calm-lake/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/calm-lake/audio.mp3",
+    "favorite": true
   },
   {
     "id": 11,
@@ -85,7 +95,8 @@
     "category": "recently_played",
     "imageKey": "neve",
     "time": "18:00",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/first-snow/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/first-snow/audio.mp3",
+    "favorite": true
   },
   {
     "id": 12,
@@ -93,7 +104,8 @@
     "category": "recently_played",
     "imageKey": "libreria",
     "time": "3:40",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/quiet-library/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/quiet-library/audio.mp3",
+    "favorite": true
   },
   {
     "id": 13,
@@ -101,7 +113,8 @@
     "category": "daily_picks",
     "imageKey": "camino",
     "time": "6:25",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/fireplace-crackle/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/fireplace-crackle/audio.mp3",
+    "favorite": true
   },
   {
     "id": 14,
@@ -109,6 +122,7 @@
     "category": "must_listen",
     "imageKey": "giungla",
     "time": "11:00",
-    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/jungle-night/audio.mp3"
+    "music": "https://musicplayer.scdn.co/albums/5t7bRmRZzKQxH4VtBZzg1T/jungle-night/audio.mp3",
+    "favorite": true
   }
 ]

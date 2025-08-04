@@ -8,13 +8,14 @@ import React, { useState } from "react";
 import { StatusBar, Text, TouchableOpacity, View } from "react-native";
 
 export default function MusicDetailScreen() {
+  const params = useLocalSearchParams();
+  const { imageKey, title, time, favorite } = params;
+
   const [buttonStates, setButtonStates] = useState({
-    heart: false,
+    heart: favorite == "true",
     pause: false,
     clock: false,
   });
-  const params = useLocalSearchParams();
-  const { imageKey, title, time } = params;
 
   const [meditationTime, setMeditationTime] = useState(time as string);
 
