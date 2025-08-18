@@ -28,6 +28,8 @@ const MAPPING = {
   gear: "settings",
   bell: "notifications",
   magnifyingglass: "search",
+  "arrow.right": "arrow-forward",
+  "arrow.left": "arrow-back",
   "heart.fill": "favorite",
 } as IconMapping;
 

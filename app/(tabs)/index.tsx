@@ -54,7 +54,7 @@ export default function HomeScreen() {
       <ScrollView className="px-5">
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-6">
-          <Text className="text-3xl font-bold">Hi, Roses</Text>
+          <Text className="text-3xl font-bold">Hi, Stefano</Text>
           <View className="flex-row gap-2">
             <TouchableOpacity activeOpacity={0.6}>
               <IconSymbol size={28} name="bell" color={"black"} />

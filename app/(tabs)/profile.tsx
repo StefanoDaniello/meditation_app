@@ -1,130 +1,185 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
-
-import { Collapsible } from "@/components/Collapsible";
-import { ExternalLink } from "@/components/ExternalLink";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import { Image } from "expo-image";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ProfileScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>
-        This app includes example code to help you get started.
-      </ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          and{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{" "}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the
-          web version, press <ThemedText type="defaultSemiBold">w</ThemedText>{" "}
-          in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the{" "}
-          <ThemedText type="defaultSemiBold">@2x</ThemedText> and{" "}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to
-          provide files for different screen densities
-        </ThemedText>
-        <Image
-          source={require("@/assets/images/react-logo.png")}
-          style={{ alignSelf: "center" }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText>{" "}
-          to see how to load{" "}
-          <ThemedText style={{ fontFamily: "SpaceMono" }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{" "}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook
-          lets you inspect what the user&apos;s current color scheme is, and so
-          you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{" "}
-          <ThemedText type="defaultSemiBold">
-            components/HelloWave.tsx
-          </ThemedText>{" "}
-          component uses the powerful{" "}
-          <ThemedText type="defaultSemiBold">
-            react-native-reanimated
-          </ThemedText>{" "}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The{" "}
-              <ThemedText type="defaultSemiBold">
-                components/ParallaxScrollView.tsx
-              </ThemedText>{" "}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <SafeAreaView className="flex-1 bg-white pb-10">
+      <ScrollView className="px-5">
+        <View className="space-y-6">
+          <View className="rounded-xl shadow-md bg-white mt-4 mb-6">
+            <TouchableOpacity
+              className="flex-row items-center  rounded-xl py-3 px-4 gap-4 border-b-[0.2px] border-b-gray-400"
+              activeOpacity={0.5}
+            >
+              {/* Avatar */}
+              <View className="rounded-full overflow-hidden border-2 border-purple-500">
+                <Image
+                  style={{ width: 80, height: 80 }}
+                  source={require("@/assets/images/music/falo.webp")}
+                />
+              </View>
+
+              {/* Info utente */}
+              <View className="flex-1 flex-row items-center justify-between">
+                <View>
+                  <Text className="text-xl font-bold text-gray-900">
+                    Stefano D'aniello
+                  </Text>
+                  <Text className="text-md font-extralight text-purple-600">
+                    Meditatore base
+                  </Text>
+                </View>
+                <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+              activeOpacity={0.5}
+            >
+              <View className="flex-1 flex-row items-center justify-between px-3">
+                <Text className="text-lg font-medium text-gray-800">
+                  Suggerimenti per la privacy
+                </Text>
+                <View className="flex-row justify-between items-center">
+                  <Text className="text-lg font-medium rounded-full bg-purple-600 px-2 mr-2 text-white">
+                    2
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View className="mt-2">
+            <View className="rounded-xl shadow-md bg-white mt-12">
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="key.fill" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Modifica Password
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="bell.fill" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Notifiche
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="music.note" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Suoni e Musica
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="target" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Obiettivi
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+            </View>
+
+            <View className="rounded-xl shadow-md bg-white mt-12">
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="key.fill" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Modifica Password
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="bell.fill" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Notifiche
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="music.note" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Suoni e Musica
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="target" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    Obiettivi
+                  </Text>
+                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
-  },
-  titleContainer: {
-    flexDirection: "row",
-    gap: 8,
-  },
-});
