@@ -3,7 +3,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import music from "@/database/music.json";
 import sounds from "@/database/sounds.json";
 import { Image } from "expo-image";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -55,6 +55,13 @@ export default function HomeScreen() {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-6">
           <Text className="text-3xl font-bold">Hi, Stefano</Text>
+          <Link
+            href="/(auth)/sign-up"
+            style={{ marginTop: 20, color: "purple" }}
+          >
+            Non hai un account? Registrati
+          </Link>
+
           <View className="flex-row gap-2">
             <TouchableOpacity activeOpacity={0.6}>
               <IconSymbol size={28} name="bell" color={"black"} />
