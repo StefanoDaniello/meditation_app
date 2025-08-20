@@ -124,72 +124,30 @@ export default function ProfileScreen() {
               </TouchableOpacity>
             </View>
 
-            {/* <View className="rounded-xl shadow-md bg-white mt-12">
+            <View className="rounded-xl shadow-md bg-white mt-12">
               <TouchableOpacity
-                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
-                activeOpacity={0.5}
+                className="flex-row items-center justify-between p-4"
+                activeOpacity={0.7}
               >
-                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
-                  <IconSymbol size={16} name="key.fill" color={"#7C3AED"} />
-                </View>
-                <View className="flex-1 flex-row items-center justify-between pr-3">
-                  <Text className="text-lg font-medium text-gray-800">
-                    Modifica Password
-                  </Text>
-                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
-                </View>
-              </TouchableOpacity>
-
-              <View className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400">
-                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
-                  <IconSymbol size={16} name="bell.fill" color={"#7C3AED"} />
-                </View>
-                <View className="flex-1 flex-row items-center justify-between pr-3">
-                  <Text className="text-lg font-medium text-gray-800">
-                    Notifiche
-                  </Text>
-                  <View style={{ transform: [{ scale: 0.8 }] }}>
-                    <Switch
-                      trackColor={{ false: "#D1D5DB", true: "#C4B5FD" }}
-                      thumbColor={isEnabled ? "#7C3AED" : "#E5E7EB"}
-                      ios_backgroundColor="#E5E7EB"
-                      onValueChange={toggleSwitch}
-                      value={isEnabled}
+                <View className="flex-row items-center gap-3">
+                  <View className="p-2 bg-red-100 rounded-lg flex-row items-center justify-center">
+                    <IconSymbol
+                      size={20} // Increased icon size for better visibility
+                      name="rectangle.portrait.and.arrow.right"
+                      color={"#ef4444"}
                     />
                   </View>
-                </View>
-              </View>
-
-              <TouchableOpacity
-                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
-                activeOpacity={0.5}
-              >
-                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
-                  <IconSymbol size={16} name="music.note" color={"#7C3AED"} />
-                </View>
-                <View className="flex-1 flex-row items-center justify-between pr-3">
-                  <Text className="text-lg font-medium text-gray-800">
-                    Suoni e Musica
+                  <Text className="text-base font-semibold text-gray-800">
+                    Esci
                   </Text>
-                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
                 </View>
+                {/* <IconSymbol
+                  size={16}
+                  name="chevron.right" // Added a chevron to indicate a forward action
+                  color={"#d1d5db"} // Lighter gray for subtlety
+                /> */}
               </TouchableOpacity>
-
-              <TouchableOpacity
-                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
-                activeOpacity={0.5}
-              >
-                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
-                  <IconSymbol size={16} name="target" color={"#7C3AED"} />
-                </View>
-                <View className="flex-1 flex-row items-center justify-between pr-3">
-                  <Text className="text-lg font-medium text-gray-800">
-                    Obiettivi
-                  </Text>
-                  <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
-                </View>
-              </TouchableOpacity>
-            </View> */}
+            </View>
           </View>
         </View>
       </ScrollView>

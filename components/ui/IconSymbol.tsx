@@ -31,6 +31,7 @@ const MAPPING = {
   "arrow.right": "arrow-forward",
   "arrow.left": "arrow-back",
   "heart.fill": "favorite",
+  "pause.fill": "pause",
 } as IconMapping;
 
 /**

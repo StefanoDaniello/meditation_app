@@ -60,10 +60,13 @@ export default function HomeScreen() {
           </Link>
 
           <View className="flex-row gap-2">
-            <TouchableOpacity activeOpacity={0.6}>
+            {/* <TouchableOpacity activeOpacity={0.6}>
               <IconSymbol size={28} name="bell" color={"black"} />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.6}>
+            </TouchableOpacity> */}
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() => router.push("/profile")}
+            >
               <IconSymbol size={28} name="gear" color={"black"} />
             </TouchableOpacity>
           </View>
