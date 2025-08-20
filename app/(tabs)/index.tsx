@@ -55,11 +55,8 @@ export default function HomeScreen() {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-6">
           <Text className="text-3xl font-bold">Hi, Stefano</Text>
-          <Link
-            href="/(auth)/sign-up"
-            style={{ marginTop: 20, color: "purple" }}
-          >
-            Non hai un account? Registrati
+          <Link href="/(auth)" style={{ marginTop: 20, color: "purple" }}>
+            Schermata Iniziale
           </Link>
 
           <View className="flex-row gap-2">
