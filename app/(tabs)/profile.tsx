@@ -1,5 +1,6 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,6 +15,7 @@ export default function ProfileScreen() {
           <View className="rounded-xl shadow-md bg-white mt-4 mb-6">
             <TouchableOpacity
               className="flex-row items-center  rounded-xl py-3 px-4 gap-4 border-b-[0.2px] border-b-gray-400"
+              onPress={() => router.push("/screens/editProfile")}
               activeOpacity={0.5}
             >
               {/* Avatar */}
@@ -60,6 +62,7 @@ export default function ProfileScreen() {
             <View className="rounded-xl shadow-md bg-white mt-12">
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                onPress={() => router.push("/screens/forgotPassword")}
                 activeOpacity={0.5}
               >
                 <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
@@ -96,6 +99,7 @@ export default function ProfileScreen() {
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
                 activeOpacity={0.5}
+                onPress={() => router.push("/screens/musicSound")}
               >
                 <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
                   <IconSymbol size={16} name="music.note" color={"#7C3AED"} />
@@ -110,6 +114,7 @@ export default function ProfileScreen() {
 
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                onPress={() => router.push("/screens/Objectives")}
                 activeOpacity={0.5}
               >
                 <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
@@ -127,6 +132,7 @@ export default function ProfileScreen() {
             <View className="rounded-xl shadow-md bg-white mt-12">
               <TouchableOpacity
                 className="flex-row items-center justify-between p-4"
+                onPress={() => router.push("/(auth)")}
                 activeOpacity={0.7}
               >
                 <View className="flex-row items-center gap-3">
@@ -141,11 +147,6 @@ export default function ProfileScreen() {
                     Esci
                   </Text>
                 </View>
-                {/* <IconSymbol
-                  size={16}
-                  name="chevron.right" // Added a chevron to indicate a forward action
-                  color={"#d1d5db"} // Lighter gray for subtlety
-                /> */}
               </TouchableOpacity>
             </View>
           </View>
