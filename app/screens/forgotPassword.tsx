@@ -1,8 +1,8 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { toast } from "burnt"; // Importa la funzione 'toast' dalla libreria 'burnt'
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
+  ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -14,26 +14,40 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { useToast } from "react-native-toast-notifications";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false); // Nuovo stato per il loading
+  const toast = useToast();
 
   const handleForgotPassword = () => {
-    // Simula l'invio dell'email di recupero
-    console.log("Password reset request sent for email:", email);
+    Keyboard.dismiss(); // Nasconde la tastiera
+    setDisabled(true);
+    setLoading(true); // Mostra l'overlay di caricamento
 
-    // Mostra il toast di successo usando 'burnt'
-    toast({
-      title: "Successo!",
-      message: "Istruzioni inviate alla tua email.",
-      preset: "done", // Un preset per un'icona di successo
-      duration: 3000, // Il toast sparirà dopo 3 secondi
-    });
+    // Simula l'invio di dati al server con un ritardo
+    setTimeout(() => {
+      setLoading(false); // Nasconde l'overlay
+      setDisabled(false);
+      setEmail("");
 
-    // Reindirizza l'utente dopo un piccolo ritardo per permettere al toast di apparire
-    // setTimeout(() => {
-    //   router.replace("/(tabs)");
-    // }, 500);
+      // Mostra il toast di successo
+      toast.show("Istruzioni inviate alla tua email!", {
+        type: "success",
+        placement: "top",
+        duration: 3000,
+        animationType: "slide-in",
+        style: {
+          marginBottom: 30,
+          borderRadius: 15,
+          backgroundColor: "#9333ea",
+        },
+      });
+
+      router.replace("/(tabs)");
+    }, 2000); // Imposta un ritardo di 2 secondi
   };
 
   return (
@@ -78,15 +92,22 @@ export default function ForgotPassword() {
 
             {/* Pulsante di Invio */}
             <TouchableOpacity
-              className={`w-full py-4 rounded-full items-center ${email.trim() ? "bg-purple-600" : "bg-purple-400"}`}
+              className={`w-full py-4 rounded-full items-center ${email.trim() && !disabled ? "bg-purple-600" : "bg-purple-400"}`}
               onPress={handleForgotPassword}
-              disabled={!email.trim()}
+              disabled={!email.trim() || disabled}
             >
               <Text className="text-white text-lg font-bold">Invia</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
+
+      {/* Overlay di caricamento */}
+      {loading && (
+        <View className="absolute inset-0 z-50 flex items-center justify-center bg-white/70">
+          <ActivityIndicator size="large" color="#8b5cf6" />
+        </View>
+      )}
     </SafeAreaView>
   );
 }

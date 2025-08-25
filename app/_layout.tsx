@@ -7,6 +7,8 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { ToastProvider } from "react-native-toast-notifications";
+
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -24,23 +26,35 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        {/* <Stack.Screen name="(auth)" options={{ headerShown: false }} /> */}
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="screens/MusicDetailScreen"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="screens/editProfile"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="screens/forgotPassword"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+      <ToastProvider
+        swipeEnabled={true}
+        placement="bottom" // Imposta la posizione predefinita in basso
+        duration={3000} // Durata predefinita
+        style={{ borderRadius: 10, paddingHorizontal: 15, paddingVertical: 10 }}
+        textStyle={{ fontSize: 16 }}
+      >
+        <Stack>
+          {/* <Stack.Screen name="(auth)" options={{ headerShown: false }} /> */}
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="screens/MusicDetailScreen"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="screens/editProfile"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="screens/forgotPassword"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="screens/Objectives"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ToastProvider>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
