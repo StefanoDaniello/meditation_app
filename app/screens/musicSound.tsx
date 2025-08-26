@@ -3,14 +3,14 @@ import { imageSources } from "@/assets/images";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import music from "@/database/music.json";
 import sounds from "@/database/sounds.json";
-import { Audio } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function musicSound() {
+export default function MusicSound() {
   const [activeButton, setActiveButton] = useState<"music" | "sound">("music");
   const currentData = activeButton === "music" ? music : sounds;
   const initialFavorites = currentData
@@ -19,17 +19,20 @@ export default function musicSound() {
 
   const [favorites, setFavorites] = useState<string[]>(initialFavorites);
   const [playingId, setPlayingId] = useState<string | null>(null);
+  const [currentMusicKey, setCurrentMusicKey] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  const musicUri = currentMusicKey
+    ? musicSources[currentMusicKey as keyof typeof musicSources]
+    : null;
+  const player = useAudioPlayer(musicUri);
 
   useEffect(() => {
-    // Funzione di pulizia: scarica l'audio quando il componente si smonta
-    return () => {
-      if (sound) {
-        sound.unloadAsync();
-      }
-    };
-  }, [sound]);
+    // Questo useEffect si attiva solo quando cambia il brano
+    if (currentMusicKey) {
+      player.play();
+    }
+  }, [currentMusicKey, player]);
 
   const getButtonClass = (buttonName: "music" | "sound") => {
     return `rounded-full px-8 py-3 ${
@@ -43,52 +46,34 @@ export default function musicSound() {
     new Set(currentData.map((item) => item.category))
   );
 
-  const handleButtonPress = (buttonName: "music" | "sound") => {
+  const handleButtonPress = async (buttonName: "music" | "sound") => {
     if (buttonName === activeButton) return;
     setIsLoading(true);
+
+    if (player.playing) {
+      player.pause();
+    }
+    setCurrentMusicKey(null);
+    setPlayingId(null);
+
     setTimeout(() => {
       setActiveButton(buttonName);
       setIsLoading(false);
-      // Pulisce lo stato di riproduzione quando si cambia categoria
-      if (sound) {
-        sound.unloadAsync();
-        setSound(null);
-        setPlayingId(null);
-      }
     }, 500);
   };
 
   const handlePlayToggle = async (itemId: string, musicKey: string) => {
-    // Trova il file audio corretto dalla mappa usando la chiave
-    const musicUri = musicSources[musicKey as keyof typeof musicSources];
+    const isCurrentlyPlayingThisTrack = playingId == itemId;
 
-    if (!musicUri) {
-      console.error("File audio non trovato per la chiave:", musicKey);
-      return;
-    }
-
-    // ... il resto della tua logica di riproduzione
-    if (playingId === itemId) {
-      if (sound) {
-        await sound.pauseAsync();
-        await sound.unloadAsync();
-        setSound(null);
-      }
+    if (isCurrentlyPlayingThisTrack) {
+      player.pause();
       setPlayingId(null);
     } else {
-      if (sound) {
-        await sound.unloadAsync();
+      if (player.playing) {
+        player.pause();
       }
-      try {
-        const { sound: newSound } = await Audio.Sound.createAsync(musicUri, {
-          shouldPlay: true,
-        });
-
-        setSound(newSound);
-        setPlayingId(itemId);
-      } catch (error) {
-        console.error("Errore durante la riproduzione del suono:", error);
-      }
+      setCurrentMusicKey(musicKey);
+      setPlayingId(itemId);
     }
   };
 
@@ -186,7 +171,7 @@ export default function musicSound() {
               <View key={category}>
                 <View>
                   {categoryItems.map((item) => {
-                    const isPlaying = playingId === String(item.id);
+                    const isSelected = playingId == String(item.id);
                     const isFav = isFavorite(String(item.id));
                     return (
                       <View
@@ -227,10 +212,10 @@ export default function musicSound() {
                               handlePlayToggle(String(item.id), item.music)
                             }
                             className={`w-10 h-10 rounded-full items-center justify-center ml-4
-                              ${isPlaying ? "bg-purple-600" : "bg-gray-400"}`}
+                              ${isSelected ? "bg-purple-600" : "bg-gray-400"}`}
                           >
                             <IconSymbol
-                              name={isPlaying ? "pause.fill" : "play.fill"}
+                              name={isSelected ? "pause.fill" : "play.fill"}
                               size={16}
                               color="white"
                             />

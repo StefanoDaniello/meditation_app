@@ -5,8 +5,7 @@
     "artist": "Nico",
     "category": "new_releases",
     "imageKey": "bosco",
-    "time": "5:00",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Andromeda",
     "favorite": false
   },
   {
@@ -15,8 +14,7 @@
     "artist": "Nico",
     "category": "recently_played",
     "imageKey": "falo",
-    "time": "10:00",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Galaxy_in_Your_Eyes",
     "favorite": false
   },
   {
@@ -25,8 +23,7 @@
     "artist": "Nico",
     "category": "recently_played",
     "imageKey": "tramonto",
-    "time": "0:05",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Lullaby_for_Elizabeth",
     "favorite": false
   },
   {
@@ -35,8 +32,7 @@
     "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "pioggia",
-    "time": "15:30",
-    "music": "Aylex_Worlds",
+    "music": "Aylex_Meditation",
     "favorite": false
   },
   {
@@ -45,8 +41,7 @@
     "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "alba",
-    "time": "8:45",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Sky_With_Yellow_Spots",
     "favorite": false
   },
   {
@@ -55,8 +50,7 @@
     "artist": "Nico",
     "category": "must_listen",
     "imageKey": "oceano",
-    "time": "20:00",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Upon_the_Waves",
     "favorite": false
   },
   {
@@ -65,8 +59,7 @@
     "artist": "Nico",
     "category": "must_listen",
     "imageKey": "stelle",
-    "time": "25:20",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Andromeda",
     "favorite": false
   },
   {
@@ -75,8 +68,7 @@
     "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "montagna",
-    "time": "7:15",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Galaxy_in_Your_Eyes",
     "favorite": true
   },
   {
@@ -85,8 +77,7 @@
     "artist": "Nico",
     "category": "must_listen",
     "imageKey": "deserto",
-    "time": "12:10",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Lullaby_for_Elizabeth",
     "favorite": true
   },
   {
@@ -95,8 +86,7 @@
     "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "lago",
-    "time": "9:50",
-    "music": "Aylex_Worlds",
+    "music": "Aylex_Meditation",
     "favorite": true
   },
   {
@@ -105,8 +95,7 @@
     "artist": "Nico",
     "category": "recently_played",
     "imageKey": "neve",
-    "time": "18:00",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Sky_With_Yellow_Spots",
     "favorite": true
   },
   {
@@ -115,8 +104,7 @@
     "artist": "Nico",
     "category": "recently_played",
     "imageKey": "libreria",
-    "time": "3:40",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Upon_the_Waves",
     "favorite": true
   },
   {
@@ -125,8 +113,7 @@
     "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "camino",
-    "time": "6:25",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Andromeda",
     "favorite": true
   },
   {
@@ -135,8 +122,7 @@
     "artist": "Nico",
     "category": "must_listen",
     "imageKey": "giungla",
-    "time": "11:00",
-    "music": "Aylex_Worlds",
+    "music": "Aeris_Galaxy_in_Your_Eyes",
     "favorite": true
   }
 ]

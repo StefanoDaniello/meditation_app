@@ -1,15 +1,29 @@
+import { musicSources } from "@/assets/audio";
 import { imageSources } from "@/assets/images";
 import CircularProgressBar from "@/components/ui/CircleStatusBar";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TimePicker from "@/components/ui/TimePicker";
+import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar, Text, TouchableOpacity, View } from "react-native";
+
+function formatTime(seconds: number) {
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+}
+
+function parseTime(time: string) {
+  // "mm:ss" → secondi totali
+  const [m, s] = time.split(":").map(Number);
+  return m * 60 + s;
+}
 
 export default function MusicDetailScreen() {
   const params = useLocalSearchParams();
-  const { imageKey, title, time, favorite } = params;
+  const { imageKey, title, favorite, music } = params;
 
   const [buttonStates, setButtonStates] = useState({
     heart: favorite == "true",
@@ -17,11 +31,69 @@ export default function MusicDetailScreen() {
     clock: false,
   });
 
-  const [meditationTime, setMeditationTime] = useState(time as string);
-
   // Cerca l'immagine nella mappa usando la chiave
   const imageSource =
     imageSources[imageKey as keyof typeof imageSources] || null;
+
+  const musicUri = musicSources[music as keyof typeof musicSources] || null;
+  const player = useAudioPlayer(musicUri);
+  const status = useAudioPlayerStatus(player);
+
+  const [duration, setDuration] = useState<number>(0);
+  const [meditationTime, setMeditationTime] = useState<string>("00:00");
+  const [remaining, setRemaining] = useState<number>(30);
+  useEffect(() => {
+    if (status.duration && status.duration !== duration) {
+      setDuration(status.duration);
+      setMeditationTime(formatTime(status.duration));
+    }
+  }, [status.duration]);
+
+  // avvia musica all'entrata
+  useEffect(() => {
+    player.play();
+  }, []);
+
+  useEffect(() => {
+    if (!status.isLoaded) return;
+
+    if (buttonStates.pause) {
+      player.pause();
+    } else {
+      player.play();
+    }
+  }, [status.isLoaded, buttonStates.pause]);
+
+  // loop manuale
+  useEffect(() => {
+    if (!status.duration) return;
+    if (status.currentTime >= status.duration - 0.1 && !buttonStates.pause) {
+      // restart da capo
+      player.seekTo(0);
+      player.play();
+    }
+  }, [status.currentTime, status.duration, buttonStates.pause]);
+
+  // timer countdown
+  useEffect(() => {
+    setRemaining(parseTime(meditationTime));
+  }, [meditationTime]);
+
+  useEffect(() => {
+    if (buttonStates.pause) return; // timer fermo
+    if (remaining <= 0) {
+      // stop manuale
+      player.pause();
+      player.seekTo(0);
+      return;
+    }
+
+    const id = setInterval(() => {
+      setRemaining((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(id);
+  }, [remaining, buttonStates.pause]);
 
   if (!imageSource) {
     // Gestione di un'immagine non trovata
@@ -36,9 +108,16 @@ export default function MusicDetailScreen() {
 
   const handleTimeSave = (newTime: string) => {
     setMeditationTime(newTime);
-    setButtonStates((prevState) => ({
-      ...prevState,
+    setRemaining(parseTime(newTime));
+
+    // riporta la musica all’inizio e avvia
+    player.seekTo(0);
+    player.play();
+
+    setButtonStates((prev) => ({
+      ...prev,
       clock: false,
+      pause: false, // assicurati che non sia in pausa
     }));
   };
 
@@ -51,7 +130,7 @@ export default function MusicDetailScreen() {
   const handlePress = (buttonName: "heart" | "pause" | "clock") => {
     setButtonStates((prevState) => {
       // Logica per il bottone "Orologio"
-      if (buttonName === "clock") {
+      if (buttonName == "clock") {
         // Se si clicca "clock" e lo si attiva, metti in pausa il timer
         if (!prevState.clock) {
           return {
