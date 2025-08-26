@@ -2,6 +2,7 @@
   {
     "id": 1,
     "title": "Blue Night",
+    "artist": "Nico",
     "category": "new_releases",
     "imageKey": "bosco",
     "time": "5:00",
@@ -11,6 +12,7 @@
   {
     "id": 2,
     "title": "Camping",
+    "artist": "Nico",
     "category": "recently_played",
     "imageKey": "falo",
     "time": "10:00",
@@ -20,6 +22,7 @@
   {
     "id": 3,
     "title": "Sunset",
+    "artist": "Nico",
     "category": "recently_played",
     "imageKey": "tramonto",
     "time": "0:05",
@@ -29,6 +32,7 @@
   {
     "id": 4,
     "title": "Forest Rain",
+    "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "pioggia",
     "time": "15:30",
@@ -38,6 +42,7 @@
   {
     "id": 5,
     "title": "Morning Breeze",
+    "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "alba",
     "time": "8:45",
@@ -47,6 +52,7 @@
   {
     "id": 6,
     "title": "Ocean Waves",
+    "artist": "Nico",
     "category": "must_listen",
     "imageKey": "oceano",
     "time": "20:00",
@@ -56,6 +62,7 @@
   {
     "id": 7,
     "title": "Cosmic Journey",
+    "artist": "Nico",
     "category": "must_listen",
     "imageKey": "stelle",
     "time": "25:20",
@@ -65,6 +72,7 @@
   {
     "id": 8,
     "title": "Mountain Stream",
+    "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "montagna",
     "time": "7:15",
@@ -74,6 +82,7 @@
   {
     "id": 9,
     "title": "Desert Sunset",
+    "artist": "Nico",
     "category": "must_listen",
     "imageKey": "deserto",
     "time": "12:10",
@@ -83,6 +92,7 @@
   {
     "id": 10,
     "title": "Calm Lake",
+    "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "lago",
     "time": "9:50",
@@ -92,6 +102,7 @@
   {
     "id": 11,
     "title": "First Snow",
+    "artist": "Nico",
     "category": "recently_played",
     "imageKey": "neve",
     "time": "18:00",
@@ -101,6 +112,7 @@
   {
     "id": 12,
     "title": "Quiet Library",
+    "artist": "Nico",
     "category": "recently_played",
     "imageKey": "libreria",
     "time": "3:40",
@@ -110,6 +122,7 @@
   {
     "id": 13,
     "title": "Fireplace Crackle",
+    "artist": "Nico",
     "category": "daily_picks",
     "imageKey": "camino",
     "time": "6:25",
@@ -119,6 +132,7 @@
   {
     "id": 14,
     "title": "Jungle Night",
+    "artist": "Nico",
     "category": "must_listen",
     "imageKey": "giungla",
     "time": "11:00",

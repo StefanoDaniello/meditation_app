@@ -34,7 +34,7 @@ export default function RootLayout() {
         textStyle={{ fontSize: 16 }}
       >
         <Stack>
-          {/* <Stack.Screen name="(auth)" options={{ headerShown: false }} /> */}
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen
             name="screens/MusicDetailScreen"
@@ -50,6 +50,10 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="screens/Objectives"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="screens/musicSound"
             options={{ headerShown: false }}
           />
           <Stack.Screen name="+not-found" />

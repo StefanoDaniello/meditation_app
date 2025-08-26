@@ -19,7 +19,7 @@ import { useToast } from "react-native-toast-notifications";
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [disabled, setDisabled] = useState(false);
-  const [loading, setLoading] = useState(false); // Nuovo stato per il loading
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
 
   const handleForgotPassword = () => {
