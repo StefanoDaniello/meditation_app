@@ -98,10 +98,6 @@ export default function HomeScreen() {
 
         {/* Contenuto dinamico o indicatore di caricamento */}
         {isLoading ? (
-          // <View className="flex-1 justify-center items-center h-96">
-          //   <ActivityIndicator size="large" color="#8b5cf6" />
-          // </View>
-
           // Skeleton Loader
           <View className="flex-1 pt-4 animate-pulse">
             {/* Skeleton per la categoria 1 (singolo elemento) */}
@@ -162,7 +158,8 @@ export default function HomeScreen() {
                           params: {
                             imageKey: item.imageKey,
                             title: item.title,
-                            time: item.time,
+                            music: item.music,
+                            // time: item.time,
                             favorite: `${item.favorite}`,
                           },
                         })
@@ -208,7 +205,8 @@ export default function HomeScreen() {
                               params: {
                                 imageKey: item.imageKey,
                                 title: item.title,
-                                time: item.time,
+                                // time: item.time,
+                                music: item.music,
                                 favorite: `${item.favorite}`,
                               },
                             })

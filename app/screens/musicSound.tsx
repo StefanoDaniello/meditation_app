@@ -1,10 +1,12 @@
+import { musicSources } from "@/assets/audio";
 import { imageSources } from "@/assets/images";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import music from "@/database/music.json";
 import sounds from "@/database/sounds.json";
+import { Audio } from "expo-av";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -18,6 +20,16 @@ export default function musicSound() {
   const [favorites, setFavorites] = useState<string[]>(initialFavorites);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  useEffect(() => {
+    // Funzione di pulizia: scarica l'audio quando il componente si smonta
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, [sound]);
 
   const getButtonClass = (buttonName: "music" | "sound") => {
     return `rounded-full px-8 py-3 ${
@@ -37,28 +49,59 @@ export default function musicSound() {
     setTimeout(() => {
       setActiveButton(buttonName);
       setIsLoading(false);
+      // Pulisce lo stato di riproduzione quando si cambia categoria
+      if (sound) {
+        sound.unloadAsync();
+        setSound(null);
+        setPlayingId(null);
+      }
     }, 500);
   };
 
-  const handlePlayToggle = (itemId: string) => {
-    setPlayingId(playingId === itemId ? null : itemId);
+  const handlePlayToggle = async (itemId: string, musicKey: string) => {
+    // Trova il file audio corretto dalla mappa usando la chiave
+    const musicUri = musicSources[musicKey as keyof typeof musicSources];
+
+    if (!musicUri) {
+      console.error("File audio non trovato per la chiave:", musicKey);
+      return;
+    }
+
+    // ... il resto della tua logica di riproduzione
+    if (playingId === itemId) {
+      if (sound) {
+        await sound.pauseAsync();
+        await sound.unloadAsync();
+        setSound(null);
+      }
+      setPlayingId(null);
+    } else {
+      if (sound) {
+        await sound.unloadAsync();
+      }
+      try {
+        const { sound: newSound } = await Audio.Sound.createAsync(musicUri, {
+          shouldPlay: true,
+        });
+
+        setSound(newSound);
+        setPlayingId(itemId);
+      } catch (error) {
+        console.error("Errore durante la riproduzione del suono:", error);
+      }
+    }
   };
 
-  // Funzione per gestire l'aggiunta/rimozione dai preferiti
   const handleFavoriteToggle = (itemId: string) => {
     setFavorites((prevFavorites) => {
-      // Controlla se l'ID è già nei preferiti
       if (prevFavorites.includes(itemId)) {
-        // Se è presente, lo rimuove
         return prevFavorites.filter((id) => id !== itemId);
       } else {
-        // Altrimenti, lo aggiunge
         return [...prevFavorites, itemId];
       }
     });
   };
 
-  // Controlla se un elemento è nei preferiti
   const isFavorite = (itemId: string): boolean => {
     return favorites.includes(itemId);
   };
@@ -66,8 +109,7 @@ export default function musicSound() {
   return (
     <SafeAreaView className="flex-1 bg-white pb-10">
       <ScrollView className="px-5">
-        {/* Header */}
-        <View className="flex-row items-center justify-start py-3 px-4">
+        <View className="flex-row items-center justify-start py-3 ">
           <TouchableOpacity onPress={() => router.back()}>
             <IconSymbol size={28} name="chevron.left" color="black" />
           </TouchableOpacity>
@@ -77,8 +119,7 @@ export default function musicSound() {
           <View className="w-8" />
         </View>
 
-        {/* Titolo e Pulsanti */}
-        <View className="flex-row items-center justify-between  mb-8 mt-3">
+        <View className="flex-row items-center justify-between mb-8 mt-3">
           <Text className="text-2xl font-semibold">
             {currentData.length}{" "}
             {activeButton === "music" ? "Music" : "Sounds"}{" "}
@@ -113,9 +154,7 @@ export default function musicSound() {
           </View>
         </View>
 
-        {/* Contenuto dinamico o indicatore di caricamento */}
         {isLoading ? (
-          // Skeleton Loader
           <View className="flex-1 pt-4 animate-pulse">
             <View className="mb-8">
               <View className="flex-row gap-5">
@@ -184,7 +223,9 @@ export default function musicSound() {
                             />
                           </TouchableOpacity>
                           <TouchableOpacity
-                            onPress={() => handlePlayToggle(String(item.id))}
+                            onPress={() =>
+                              handlePlayToggle(String(item.id), item.music)
+                            }
                             className={`w-10 h-10 rounded-full items-center justify-center ml-4
                               ${isPlaying ? "bg-purple-600" : "bg-gray-400"}`}
                           >
