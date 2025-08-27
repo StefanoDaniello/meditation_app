@@ -16,13 +16,13 @@ import {
 } from "react-native";
 import { useToast } from "react-native-toast-notifications";
 
-export default function ForgotPassword() {
+export default function changePassword() {
   const [email, setEmail] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
-  const handleForgotPassword = () => {
+  const handleChangePassword = () => {
     Keyboard.dismiss(); // Nasconde la tastiera
     setDisabled(true);
     setLoading(true); // Mostra l'overlay di caricamento
@@ -64,7 +64,7 @@ export default function ForgotPassword() {
               <IconSymbol size={28} name="chevron.left" color="black" />
             </TouchableOpacity>
             <View className="flex-1 items-center">
-              <Text className="text-xl font-bold">Recupera Password</Text>
+              <Text className="text-xl font-bold">Cambia Password</Text>
             </View>
             <View className="w-8" />
           </View>
@@ -72,7 +72,7 @@ export default function ForgotPassword() {
           {/* Contenuto principale */}
           <View className="flex-1 w-full p-6 items-center justify-center">
             <Text className="text-center text-4xl font-bold text-gray-800 mb-4">
-              Password Dimenticata?
+              Vuoi davvero cambiare la Password ?
             </Text>
             <Text className="text-center text-base text-gray-600 mb-8 max-w-sm">
               Inserisci la tua email qui sotto e ti invieremo le istruzioni per
@@ -93,7 +93,7 @@ export default function ForgotPassword() {
             {/* Pulsante di Invio */}
             <TouchableOpacity
               className={`w-full py-4 rounded-full items-center ${email.trim() && !disabled ? "bg-purple-600" : "bg-purple-400"}`}
-              onPress={handleForgotPassword}
+              onPress={handleChangePassword}
               disabled={!email.trim() || disabled}
             >
               <Text className="text-white text-lg font-bold">Invia</Text>

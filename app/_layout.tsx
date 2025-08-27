@@ -45,7 +45,7 @@ export default function RootLayout() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="screens/forgotPassword"
+            name="screens/changePassword"
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -54,6 +54,10 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="screens/musicSound"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="screens/privacyTips"
             options={{ headerShown: false }}
           />
           <Stack.Screen name="+not-found" />

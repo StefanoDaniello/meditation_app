@@ -42,6 +42,7 @@ export default function ProfileScreen() {
 
             <TouchableOpacity
               className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+              onPress={() => router.push("/screens/privacyTips")}
               activeOpacity={0.5}
             >
               <View className="flex-1 flex-row items-center justify-between px-3">
@@ -62,7 +63,7 @@ export default function ProfileScreen() {
             <View className="rounded-xl shadow-md bg-white mt-12">
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
-                onPress={() => router.push("/screens/forgotPassword")}
+                onPress={() => router.push("/screens/changePassword")}
                 activeOpacity={0.5}
               >
                 <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">

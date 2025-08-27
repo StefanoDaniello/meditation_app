@@ -4,13 +4,19 @@ import music from "@/database/music.json";
 import sounds from "@/database/sounds.json";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function FavoriteScreen() {
   const [activeButton, setActiveButton] = useState<"music" | "sound">("music");
-  const [isLoading, setIsLoading] = useState(false); // Nuovo stato per il caricamento
+  const [isLoading, setIsLoading] = useState(true); // Nuovo stato per il caricamento
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
 
   // Funzione per ottenere le classi dinamiche
   const getButtonClass = (buttonName: "music" | "sound") => {
@@ -174,7 +180,6 @@ export default function FavoriteScreen() {
                             params: {
                               imageKey: item.imageKey,
                               title: item.title,
-                              time: item.time,
                               favorite: `${item.favorite}`,
                             },
                           })
@@ -223,7 +228,6 @@ export default function FavoriteScreen() {
                                 params: {
                                   imageKey: item.imageKey,
                                   title: item.title,
-                                  time: item.time,
                                   favorite: `${item.favorite}`,
                                 },
                               })

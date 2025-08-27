@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 interface CircularProgressBarProps {
-  time: any; // Esempio: "5:00"
+  time: any;
   size?: number;
   strokeWidth?: number;
   circleBackgroundColor?: string;
   circleProgressColor?: string;
   playing?: boolean;
+  handleRestartMusic: () => void;
 }
 
 // Funzione helper per convertire la stringa di tempo in secondi
@@ -30,6 +31,7 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
   circleBackgroundColor = "#ffffff40",
   circleProgressColor = "#ffffff",
   playing = false,
+  handleRestartMusic,
 }) => {
   // Stato per il tempo rimanente in secondi
   const [remainingSeconds, setRemainingSeconds] = useState(
@@ -47,7 +49,7 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
 
   // Effetto per gestire il countdown (start/stop)
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: number | null = null;
 
     if (playing && remainingSeconds > 0) {
       interval = setInterval(() => {
@@ -66,6 +68,11 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
       }
     };
   }, [playing, remainingSeconds]); // Si attiva solo quando 'playing' o 'remainingSeconds' cambiano
+
+  const handleRestart = (time: string) => {
+    setRemainingSeconds(timeStringToSeconds(time));
+    handleRestartMusic();
+  };
 
   // Calcola la percentuale di progresso
   const progress = (remainingSeconds / totalSecondsRef.current) * 100;
@@ -121,7 +128,7 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
           </Text>
           <TouchableOpacity
             activeOpacity={0.6}
-            onPress={() => setRemainingSeconds(timeStringToSeconds(time))}
+            onPress={() => handleRestart(time)}
             className="mt-6 flex flex-row items-center justify-center py-3  px-4 rounded-full bg-white/40"
           >
             {/* Icona SVG per il riavvio */}

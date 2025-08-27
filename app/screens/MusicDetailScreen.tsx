@@ -111,14 +111,18 @@ export default function MusicDetailScreen() {
     setRemaining(parseTime(newTime));
 
     // riporta la musica all’inizio e avvia
-    player.seekTo(0);
-    player.play();
+    handleRestartMusic();
 
     setButtonStates((prev) => ({
       ...prev,
       clock: false,
       pause: false, // assicurati che non sia in pausa
     }));
+  };
+
+  const handleRestartMusic = () => {
+    player.seekTo(0);
+    player.play();
   };
 
   const handleTimeCancel = () => {
@@ -199,6 +203,7 @@ export default function MusicDetailScreen() {
           <CircularProgressBar
             time={meditationTime}
             playing={buttonStates.pause ? false : true}
+            handleRestartMusic={handleRestartMusic}
           />
         </View>
 
