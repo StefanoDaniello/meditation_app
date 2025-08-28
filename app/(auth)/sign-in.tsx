@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
+import i18next from "i18next";
 import { useEffect, useRef } from "react";
 import {
   Animated,
@@ -54,7 +55,9 @@ export default function SignIn() {
               source={require("@/assets/images/auth/logo-white.png")}
               style={{ width: 150, height: 150, marginBottom: 20 }}
             />
-            <Text className="text-white text-4xl font-bold mb-8">Sign In</Text>
+            <Text className="text-white text-4xl font-bold mb-8">
+              {i18next.t("Accedi")}
+            </Text>
 
             {/* Campi di input e pulsante */}
             <View className="w-full">
@@ -75,24 +78,26 @@ export default function SignIn() {
                 className="w-full bg-white py-4 rounded-full items-center"
                 onPress={() => router.replace("/(tabs)")}
               >
-                <Text className="text-black text-lg font-bold">Sign In</Text>
+                <Text className="text-black text-lg font-bold">
+                  {i18next.t("Accedi")}
+                </Text>
               </TouchableOpacity>
             </View>
 
             <View className="flex-row justify-center mt-5">
               <Text className="text-white text-sm">
-                Don't have an account?{" "}
+                {i18next.t("Non hai un account?")}{" "}
                 <Link href="/sign-up" className="font-bold underline">
-                  Sign-up
+                  {i18next.t("Registrati")}
                 </Link>
               </Text>
             </View>
 
             <View className="flex-row justify-center mt-2">
               <Text className="text-white text-sm">
-                Forgot your password?{" "}
+                {i18next.t("Hai dimenticato la password?")}{" "}
                 <Link href="/forgot-password" className="font-bold underline">
-                  Forgot Password
+                  {i18next.t("Recupera password")}
                 </Link>
               </Text>
             </View>

@@ -1,6 +1,7 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import i18next from "i18next";
 import { useState } from "react";
 import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -33,7 +34,7 @@ export default function ProfileScreen() {
                     Stefano D'aniello
                   </Text>
                   <Text className="text-md font-extralight text-purple-600">
-                    Meditatore base
+                    {`${i18next.t(`MeditationLevel.${"Meditatore base"}`)}`}
                   </Text>
                 </View>
                 <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
@@ -47,11 +48,11 @@ export default function ProfileScreen() {
             >
               <View className="flex-1 flex-row items-center justify-between px-3">
                 <Text className="text-lg font-medium text-gray-800">
-                  Suggerimenti per la privacy
+                  {`${i18next.t("Suggerimenti per la privacy")}`}
                 </Text>
                 <View className="flex-row justify-between items-center">
                   <Text className="text-lg font-medium rounded-full bg-purple-600 px-2 mr-2 text-white">
-                    7
+                    4
                   </Text>
                   <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
                 </View>
@@ -71,7 +72,7 @@ export default function ProfileScreen() {
                 </View>
                 <View className="flex-1 flex-row items-center justify-between pr-3">
                   <Text className="text-lg font-medium text-gray-800">
-                    Modifica Password
+                    {`${i18next.t("Modifica password")}`}
                   </Text>
                   <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
                 </View>
@@ -83,7 +84,7 @@ export default function ProfileScreen() {
                 </View>
                 <View className="flex-1 flex-row items-center justify-between pr-3">
                   <Text className="text-lg font-medium text-gray-800">
-                    Notifiche
+                    {`${i18next.t("Notifiche")}`}
                   </Text>
                   <View style={{ transform: [{ scale: 0.8 }] }}>
                     <Switch
@@ -107,7 +108,7 @@ export default function ProfileScreen() {
                 </View>
                 <View className="flex-1 flex-row items-center justify-between pr-3">
                   <Text className="text-lg font-medium text-gray-800">
-                    Suoni e Musica
+                    {`${i18next.t("Musica e Suoni")}`}
                   </Text>
                   <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
                 </View>
@@ -123,7 +124,7 @@ export default function ProfileScreen() {
                 </View>
                 <View className="flex-1 flex-row items-center justify-between pr-3">
                   <Text className="text-lg font-medium text-gray-800">
-                    Obiettivi
+                    {`${i18next.t("Obiettivi")}`}
                   </Text>
                   <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
                 </View>
@@ -139,13 +140,13 @@ export default function ProfileScreen() {
                 <View className="flex-row items-center gap-3">
                   <View className="p-2 bg-red-100 rounded-lg flex-row items-center justify-center">
                     <IconSymbol
-                      size={20} // Increased icon size for better visibility
+                      size={20}
                       name="rectangle.portrait.and.arrow.right"
                       color={"#ef4444"}
                     />
                   </View>
                   <Text className="text-base font-semibold text-gray-800">
-                    Esci
+                    {`${i18next.t("Esci")}`}
                   </Text>
                 </View>
               </TouchableOpacity>

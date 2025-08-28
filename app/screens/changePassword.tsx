@@ -1,5 +1,6 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { router } from "expo-router";
+import i18next from "i18next";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
@@ -64,7 +65,7 @@ export default function changePassword() {
               <IconSymbol size={28} name="chevron.left" color="black" />
             </TouchableOpacity>
             <View className="flex-1 items-center">
-              <Text className="text-xl font-bold">Cambia Password</Text>
+              <Text className="text-xl font-bold">{`${i18next.t("Cambia Password")}`}</Text>
             </View>
             <View className="w-8" />
           </View>
@@ -72,17 +73,16 @@ export default function changePassword() {
           {/* Contenuto principale */}
           <View className="flex-1 w-full p-6 items-center justify-center">
             <Text className="text-center text-4xl font-bold text-gray-800 mb-4">
-              Vuoi davvero cambiare la Password ?
+              {`${i18next.t("Vuoi davvero cambiare la Password ?")}`}
             </Text>
             <Text className="text-center text-base text-gray-600 mb-8 max-w-sm">
-              Inserisci la tua email qui sotto e ti invieremo le istruzioni per
-              reimpostare la tua password.
+              {`${i18next.t("Inserisci la tua email qui sotto e ti invieremo le istruzioni per reimpostare la tua password.")}`}
             </Text>
 
             {/* Input Email */}
             <TextInput
               className="w-full bg-purple-100 p-4 rounded-xl text-gray-800 mb-6"
-              placeholder="Indirizzo Email"
+              placeholder="Email"
               placeholderTextColor="#999"
               keyboardType="email-address"
               autoCapitalize="none"
@@ -96,7 +96,7 @@ export default function changePassword() {
               onPress={handleChangePassword}
               disabled={!email.trim() || disabled}
             >
-              <Text className="text-white text-lg font-bold">Invia</Text>
+              <Text className="text-white text-lg font-bold">{`${i18next.t("Invia")}`}</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

@@ -1,5 +1,6 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { router } from "expo-router";
+import i18next from "i18next";
 import React from "react";
 import {
   ScrollView,
@@ -53,12 +54,12 @@ export default function Objectives() {
       <StatusBar hidden />
 
       {/* Header */}
-      <View className="flex-row items-center justify-start py-3 px-4 border-b border-b-gray-200">
+      <View className="flex-row items-center justify-start py-3 px-4 ">
         <TouchableOpacity onPress={() => router.back()}>
           <IconSymbol size={28} name="chevron.left" color="black" />
         </TouchableOpacity>
         <View className="flex-1 items-center">
-          <Text className="text-xl font-bold">Obiettivi</Text>
+          <Text className="text-xl font-bold">{`${i18next.t("Obiettivi")}`}</Text>
         </View>
         <View className="w-8" />
       </View>
@@ -89,10 +90,10 @@ export default function Objectives() {
             {/* Contenuto dell'obiettivo */}
             <View className="flex-1 ml-4">
               <Text className="text-base font-semibold text-gray-800">
-                {objective.title}
+                {`${i18next.t(`${objective.title}`)}`}
               </Text>
               <Text className="text-sm text-gray-500 mt-1">
-                {objective.description}
+                {`${i18next.t(`ObjectivesDescription.${objective.description}`)}`}
               </Text>
             </View>
           </View>

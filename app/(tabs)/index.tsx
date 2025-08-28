@@ -4,6 +4,7 @@ import music from "@/database/music.json";
 import sounds from "@/database/sounds.json";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import i18next from "i18next";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -60,7 +61,9 @@ export default function HomeScreen() {
       <ScrollView className="px-5">
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-6">
-          <Text className="text-3xl font-bold">Hi, Stefano</Text>
+          <Text className="text-3xl font-bold">
+            {`${i18next.t("Ciao")}`}, Stefano
+          </Text>
 
           <View className="flex-row gap-2">
             <TouchableOpacity
@@ -84,7 +87,7 @@ export default function HomeScreen() {
                 activeButton === "music" ? "text-white" : "text-purple-600"
               }`}
             >
-              Music
+              {`${i18next.t("Musica")}`}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -97,7 +100,7 @@ export default function HomeScreen() {
                 activeButton === "sound" ? "text-white" : "text-purple-600"
               }`}
             >
-              Sounds
+              {`${i18next.t("Suoni")}`}
             </Text>
           </TouchableOpacity>
         </View>
@@ -149,7 +152,9 @@ export default function HomeScreen() {
             return (
               <View key={category} className="mb-8">
                 <Text className="text-3xl font-bold mb-4">
-                  {formatCategoryTitle(category)}
+                  {formatCategoryTitle(
+                    i18next.t(`MusicAndSoundCategory.${category}`)
+                  )}
                 </Text>
 
                 {isSingleItem ? (
@@ -165,7 +170,6 @@ export default function HomeScreen() {
                             imageKey: item.imageKey,
                             title: item.title,
                             music: item.music,
-                            // time: item.time,
                             favorite: `${item.favorite}`,
                           },
                         })
@@ -183,7 +187,7 @@ export default function HomeScreen() {
                       <View className="absolute top-6 left-0 w-full">
                         <View className="flex flex-row justify-between mx-6">
                           <Text className="text-white text-lg font-semibold">
-                            {item.title}
+                            {`${i18next.t(`MusicAndSoundTitle.${item.title}`)}`}
                           </Text>
 
                           {item.favorite && (
@@ -211,7 +215,6 @@ export default function HomeScreen() {
                               params: {
                                 imageKey: item.imageKey,
                                 title: item.title,
-                                // time: item.time,
                                 music: item.music,
                                 favorite: `${item.favorite}`,
                               },
@@ -230,7 +233,7 @@ export default function HomeScreen() {
                           <View className="absolute top-6 left-0 w-full">
                             <View className="flex flex-row justify-between mx-6">
                               <Text className="text-white text-lg font-semibold">
-                                {item.title}
+                                {`${i18next.t(`MusicAndSoundTitle.${item.title}`)}`}
                               </Text>
                               {item.favorite && (
                                 <IconSymbol

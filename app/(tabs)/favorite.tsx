@@ -4,6 +4,7 @@ import music from "@/database/music.json";
 import sounds from "@/database/sounds.json";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import i18next from "i18next";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -64,9 +65,9 @@ export default function FavoriteScreen() {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-6">
           <Text className="text-3xl  font-bold">
-            You favorite{" "}
-            {/* {activeButton.charAt(0).toUpperCase() + activeButton.slice(1)} */}
-            {activeButton}
+            {`${i18next.t("I tuoi preferiti")}`}:{" "}
+            {`${i18next.t(`${activeButton == "music" ? `${i18next.t("Musica")}` : `${i18next.t("Suoni")}`}`)}`}
+            {/* {activeButton} */}
           </Text>
           {/* <View className="flex-row gap-2">
             <TouchableOpacity activeOpacity={0.6}>
@@ -90,7 +91,7 @@ export default function FavoriteScreen() {
                 activeButton === "music" ? "text-white" : "text-purple-600"
               }`}
             >
-              Music
+              {`${i18next.t("Musica")}`}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -103,7 +104,7 @@ export default function FavoriteScreen() {
                 activeButton === "sound" ? "text-white" : "text-purple-600"
               }`}
             >
-              Sounds
+              {`${i18next.t("Suoni")}`}
             </Text>
           </TouchableOpacity>
         </View>
@@ -165,7 +166,9 @@ export default function FavoriteScreen() {
               return (
                 <View key={category} className="mb-8">
                   <Text className="text-3xl font-bold mb-4">
-                    {formatCategoryTitle(category)}
+                    {formatCategoryTitle(
+                      i18next.t(`MusicAndSoundCategory.${category}`)
+                    )}
                   </Text>
 
                   {isSingleItem ? (
@@ -197,9 +200,8 @@ export default function FavoriteScreen() {
                         <View className="absolute top-6 left-0 w-full">
                           <View className="flex flex-row justify-between mx-6">
                             <Text className="text-white text-lg font-semibold">
-                              {item.title}
+                              {`${i18next.t(`MusicAndSoundTitle.${item.title}`)}`}
                             </Text>
-
                             {item.favorite && (
                               <IconSymbol
                                 size={28}
@@ -245,9 +247,8 @@ export default function FavoriteScreen() {
                             <View className="absolute top-6 left-0 w-full">
                               <View className="flex flex-row justify-between mx-6">
                                 <Text className="text-white text-lg font-semibold">
-                                  {item.title}
+                                  {`${i18next.t(`MusicAndSoundTitle.${item.title}`)}`}
                                 </Text>
-
                                 {item.favorite && (
                                   <IconSymbol
                                     size={28}

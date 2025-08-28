@@ -6,6 +6,7 @@ import TimePicker from "@/components/ui/TimePicker";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
+import i18next from "i18next";
 import React, { useEffect, useState } from "react";
 import { StatusBar, Text, TouchableOpacity, View } from "react-native";
 
@@ -100,7 +101,7 @@ export default function MusicDetailScreen() {
     return (
       <View className="flex-1 items-center justify-center bg-gray-100">
         <Text className="text-xl text-red-500">
-          Errore: Immagine non trovata
+          {i18next.t("Errore: Immagine non trovata")}
         </Text>
       </View>
     );
@@ -143,7 +144,7 @@ export default function MusicDetailScreen() {
             pause: true, // Imposta 'pause' su true per fermare il timer
           };
         } else {
-          // Se si clicca "clock" e lo si disattiva, rimetti in gioco il timer (non lo avvii automaticamente)
+          // Se si clicca "clock" e lo si disattiva, rimette in gioco il timer (non lo avvii automaticamente)
           return {
             ...prevState,
             clock: false,
@@ -163,7 +164,7 @@ export default function MusicDetailScreen() {
   // Funzione per ottenere le classi dinamiche
   const getButtonClass = (buttonName: "heart" | "pause" | "clock") => {
     return `rounded-full px-8 py-3 ${
-      buttonStates[buttonName] // Controlla il valore booleano
+      buttonStates[buttonName]
         ? "bg-white border border-transparent"
         : "bg-transparent border border-white"
     }`;
@@ -195,7 +196,10 @@ export default function MusicDetailScreen() {
 
         {/* Sezione del titolo */}
         <View className="absolute top-16 w-full items-center">
-          <Text className="text-white text-2xl font-bold">{title}</Text>
+          <Text className="text-white text-2xl font-bold">
+            {" "}
+            {`${i18next.t(`MusicAndSoundTitle.${title}`)}`}
+          </Text>
         </View>
 
         {/* Sezione in mezzo: Time */}

@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
-import { Link, useRouter } from "expo-router"; // Importa useRouter
-import { useEffect, useRef } from "react"; // Importa gli hook necessari
+import { Link, useRouter } from "expo-router";
+import i18next from "i18next";
+import { useEffect, useRef } from "react";
 import {
   Animated,
   StatusBar,
@@ -39,7 +40,9 @@ export default function Index() {
         {/* Contenitore per il testo di benvenuto */}
         <View className="mt-20">
           <Text className="text-white text-4xl font-bold text-center">
-            Welcome to{"\n"}Meditation app!
+            {i18next.t("Benvenuto in")}
+            {"\n"}
+            {i18next.t("Meditation app!")}
           </Text>
         </View>
 
@@ -58,13 +61,16 @@ export default function Index() {
             onPress={() => router.push("/sign-in")} // Naviga a '/sign-in' al tocco
             className="bg-white/20 py-4 rounded-full w-4/5 items-center mb-4"
           >
-            <Text className="text-white text-lg font-bold">Sign-in</Text>
+            <Text className="text-white text-lg font-bold">
+              {" "}
+              {i18next.t("Accedi")}
+            </Text>
           </TouchableOpacity>
 
           <Text className="text-white text-sm">
-            Don't have an account?{" "}
+            {i18next.t("Non hai un account?")}{" "}
             <Link href="/sign-up" className="font-bold underline">
-              Sign-up
+              {i18next.t("Registrati")}
             </Link>
           </Text>
         </View>

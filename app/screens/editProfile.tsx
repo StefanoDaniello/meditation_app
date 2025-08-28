@@ -2,6 +2,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker"; // Importa la libreria
 import { router } from "expo-router";
+import i18next from "i18next";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
@@ -21,9 +22,9 @@ import { useToast } from "react-native-toast-notifications";
 
 export default function editProfile() {
   const user = {
-    firstName: "Mario",
-    lastName: "Rossi",
-    email: "mario.rossi@example.com",
+    firstName: "Stefano",
+    lastName: "D'aneiello",
+    email: "s.daniello@gmail.com",
     avatar: require("@/assets/images/music/falo.webp"),
   };
 
@@ -103,7 +104,7 @@ export default function editProfile() {
                 <IconSymbol size={28} name="chevron.left" color="black" />
               </TouchableOpacity>
               <View className="flex-1 items-center">
-                <Text className="text-xl font-bold">Modifica profilo</Text>
+                <Text className="text-xl font-bold">{`${i18next.t("Modifica Profilo")}`}</Text>
               </View>
               <View className="w-8" />
             </View>
@@ -130,7 +131,7 @@ export default function editProfile() {
             <View className="w-full px-4 mt-3 flex-1">
               <View className="my-4">
                 <Text className="text-gray-600 text-base font-semibold mb-2">
-                  Nome
+                  {`${i18next.t("Nome")}`}
                 </Text>
                 <TextInput
                   className="w-full bg-purple-100 p-4 rounded-xl text-gray-800"
@@ -140,7 +141,7 @@ export default function editProfile() {
               </View>
               <View className="mb-4">
                 <Text className="text-gray-600 text-base font-semibold mb-2">
-                  Cognome
+                  {`${i18next.t("Cognome")}`}
                 </Text>
                 <TextInput
                   className="w-full bg-purple-100 p-4 rounded-xl text-gray-800"
@@ -155,7 +156,7 @@ export default function editProfile() {
                   onPress={handleEditProfile}
                 >
                   <Text className="text-white text-lg font-bold">
-                    Salva modifiche
+                    {`${i18next.t("Salva Modifiche ")}`}
                   </Text>
                 </TouchableOpacity>
               </View>

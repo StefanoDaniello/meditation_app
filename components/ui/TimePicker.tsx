@@ -276,6 +276,7 @@
 
 // export default TimePicker;
 
+import i18next from "i18next";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
@@ -499,7 +500,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
             className="p-2"
           >
             <Text className="text-purple-600 text-lg font-bold text-center">
-              Ripristina tempo
+              {`${i18next.t("Ripristina tempo")}`}
             </Text>
           </TouchableOpacity>
         </View>
@@ -568,7 +569,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
             }
           >
             <Text className="text-white text-lg font-bold text-center">
-              Salva
+              {`${i18next.t("Salva")}`}
             </Text>
           </TouchableOpacity>
         </View>

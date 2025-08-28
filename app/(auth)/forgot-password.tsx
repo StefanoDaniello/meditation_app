@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
+import i18next from "i18next";
 import { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -93,14 +94,14 @@ export default function SignIn() {
                 style={{ width: 150, height: 150, marginBottom: 20 }}
               />
               <Text className="text-white text-4xl font-bold mb-8">
-                Forgot Password
+                {i18next.t("Recupera password")}
               </Text>
 
               {/* Campi di input e pulsante */}
               <View className="w-full">
                 <TextInput
                   className="w-full bg-white/20 p-4 rounded-xl mb-5 text-white"
-                  placeholder="Indirizzo Email"
+                  placeholder="Email"
                   placeholderTextColor="white"
                   keyboardType="email-address"
                   onChangeText={setEmail}
@@ -112,7 +113,10 @@ export default function SignIn() {
                   onPress={handleChangePassword}
                   disabled={!email.trim() || disabled}
                 >
-                  <Text className="text-lg font-bold">Invia</Text>
+                  <Text className="text-lg font-bold">
+                    {" "}
+                    {i18next.t("Invia")}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </ScrollView>

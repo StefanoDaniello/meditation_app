@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
+import i18next from "i18next";
 import { useEffect, useRef, useState } from "react";
 import {
   Animated,
@@ -58,7 +59,10 @@ export default function SignUp() {
               source={require("@/assets/images/auth/logo-white.png")}
               style={{ width: 150, height: 150, marginBottom: 20 }}
             />
-            <Text className="text-white text-4xl font-bold mb-8">Sign Up</Text>
+            <Text className="text-white text-4xl font-bold mb-8">
+              {" "}
+              {i18next.t("Registrati")}
+            </Text>
 
             {/* Campi di input e pulsante */}
             <View className="w-full">
@@ -79,9 +83,9 @@ export default function SignUp() {
                 className="w-full bg-white/20 p-4 rounded-xl mb-5 text-white"
                 placeholder="Password"
                 placeholderTextColor="white"
-                secureTextEntry={true} // Controlla la visibilità
-                autoCorrect={false} // Aggiunto
-                spellCheck={false} // Aggiunto
+                secureTextEntry={true}
+                autoCorrect={false}
+                spellCheck={false}
               />
               {/* Contenitore per il campo password e l'icona */}
               {/* <View className="relative w-full mb-5">
@@ -140,16 +144,19 @@ export default function SignUp() {
                 className="w-full bg-white py-4 rounded-full items-center"
                 onPress={() => router.replace("/(tabs)")}
               >
-                <Text className="text-black text-lg font-bold">Sign Up</Text>
+                <Text className="text-black text-lg font-bold">
+                  {" "}
+                  {i18next.t("Registrati")}
+                </Text>
               </TouchableOpacity>
             </View>
 
             {/* Link per tornare indietro */}
             <View className="flex-row justify-center mt-5">
               <Text className="text-white text-sm">
-                Already have an account?{" "}
+                {i18next.t("Hai già un account?")}{" "}
                 <Link href="/sign-in" className="font-bold underline">
-                  Sign-in
+                  {i18next.t("Accedi")}
                 </Link>
               </Text>
             </View>

@@ -1,5 +1,6 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { router } from "expo-router";
+import i18next from "i18next";
 import React from "react";
 import {
   SafeAreaView,
@@ -13,32 +14,24 @@ import {
 export default function privacyTips() {
   const tips = [
     {
-      title: "Usa password sicure e uniche",
-      text: "Crea password lunghe e complesse per ogni account. Considera l'uso di un gestore di password per memorizzarle in modo sicuro.",
+      title: "I tuoi dati restano sul tuo dispositivo",
+      description:
+        "Questa app non raccoglie né condivide le tue informazioni personali. Il tuo percorso di meditazione, le tue preferenze e i tuoi progressi sono memorizzati in modo sicuro solo sul tuo dispositivo.",
     },
     {
-      title: "Limita la condivisione di informazioni",
-      text: "Sii selettivo su ciò che condividi online, specialmente sui social media. Evita di pubblicare dati personali sensibili come il tuo indirizzo o numero di telefono.",
+      title: "Nessun tracciamento esterno",
+      description:
+        "Non utilizziamo tracker di terze parti o servizi di analisi. La tua esperienza è completamente privata e non viene monitorata per scopi pubblicitari o di raccolta dati.",
     },
     {
-      title: "Controlla le impostazioni sulla privacy",
-      text: "Esamina e aggiorna regolarmente le impostazioni di privacy su app e siti web. Imposta i tuoi profili su 'privato' per controllare chi può vedere i tuoi contenuti.",
+      title: "Proteggi il tuo dispositivo",
+      description:
+        "Per garantire la massima sicurezza dei tuoi dati locali, ti consigliamo di proteggere il tuo telefono con un PIN, una password o un'impronta digitale.",
     },
     {
-      title: "Fai attenzione al phishing",
-      text: "Non cliccare su link sospetti o aprire allegati da mittenti sconosciuti. Le aziende legittime non chiederanno mai le tue informazioni personali via email.",
-    },
-    {
-      title: "Disabilita il tracciamento",
-      text: "Utilizza le impostazioni del tuo browser per bloccare i cookie di terze parti e il tracciamento online. Considera l'uso di estensioni del browser dedicate alla privacy.",
-    },
-    {
-      title: "Aggiorna il software",
-      text: "Mantieni il sistema operativo e le app sempre aggiornate. Gli aggiornamenti spesso includono patch di sicurezza essenziali per proteggerti dalle minacce.",
-    },
-    {
-      title: "Utilizza una VPN",
-      text: "Una Rete Privata Virtuale (VPN) può criptare il tuo traffico internet, proteggendo i tuoi dati quando usi reti Wi-Fi pubbliche non sicure.",
+      title: "Gestisci l'accesso alla galleria",
+      description:
+        "Se scegli di caricare un'immagine dalla galleria, l'app vi accederà solo per lo scopo selezionato. Puoi controllare e revocare questa autorizzazione in qualsiasi momento dalle impostazioni del tuo sistema operativo.",
     },
   ];
 
@@ -54,7 +47,7 @@ export default function privacyTips() {
           <View className="flex-1 items-center">
             <Text className="text-xl font-bold">
               {" "}
-              Suggerimenti per la privacy
+              {`${i18next.t("Suggerimenti per la privacy")}`}
             </Text>
           </View>
           <View className="w-8" />
@@ -63,19 +56,18 @@ export default function privacyTips() {
         {/* Contenuto principale */}
         <View className="w-full p-6">
           <Text className="text-4xl font-bold text-gray-800 mb-4">
-            Proteggi la tua Privacy
+            {`${i18next.t("Proteggi la tua Privacy")}`}
           </Text>
           <Text className="text-base text-gray-600 mb-8">
-            Segui questi semplici consigli per proteggere le tue informazioni
-            personali online.
+            {`${i18next.t("Segui questi semplici consigli per proteggere le tue informazioni personali online.")}`}
           </Text>
 
           {tips.map((tip, index) => (
             <View key={index} className="mb-6 p-4 bg-gray-100 rounded-lg">
               <Text className="text-xl font-semibold mb-2 text-purple-600">
-                {tip.title}
+                {`${i18next.t(`PrivacyTipTitle.${tip.title}`)}`}
               </Text>
-              <Text className="text-base text-gray-700">{tip.text}</Text>
+              <Text className="text-base text-gray-700">{`${i18next.t(`PrivacyTipDescription.${tip.description}`)}`}</Text>
             </View>
           ))}
         </View>

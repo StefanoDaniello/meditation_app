@@ -6,6 +6,7 @@ import sounds from "@/database/sounds.json";
 import { useAudioPlayer } from "expo-audio";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import i18next from "i18next";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -99,15 +100,14 @@ export default function MusicSound() {
             <IconSymbol size={28} name="chevron.left" color="black" />
           </TouchableOpacity>
           <View className="flex-1 items-center">
-            <Text className="text-xl font-bold">Suoni e Musica</Text>
+            <Text className="text-xl font-bold">{`${i18next.t("Musica e Suoni")}`}</Text>
           </View>
           <View className="w-8" />
         </View>
 
         <View className="flex-row items-center justify-between mb-8 mt-3">
           <Text className="text-2xl font-semibold">
-            {currentData.length}{" "}
-            {activeButton === "music" ? "Music" : "Sounds"}{" "}
+            {currentData.length} {`${i18next.t("Risultati")}`}
           </Text>
           <View className="flex-row gap-4 items-center ">
             <TouchableOpacity
@@ -120,7 +120,7 @@ export default function MusicSound() {
                   activeButton === "music" ? "text-white" : "text-purple-600"
                 }`}
               >
-                Music
+                {`${i18next.t("Musica")}`}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -133,7 +133,7 @@ export default function MusicSound() {
                   activeButton === "sound" ? "text-white" : "text-purple-600"
                 }`}
               >
-                Sounds
+                {`${i18next.t("Suoni")}`}
               </Text>
             </TouchableOpacity>
           </View>
@@ -189,8 +189,8 @@ export default function MusicSound() {
                           />
                         </View>
                         <View className="flex-1 ml-4">
-                          <Text className="font-bold text-lg ">
-                            {item.title}
+                          <Text className="font-bold text-lg">
+                            {`${i18next.t(`MusicAndSoundTitle.${item.title}`)}`}
                           </Text>
                           <Text>{item.artist}</Text>
                         </View>
