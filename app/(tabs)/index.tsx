@@ -6,12 +6,23 @@ import { Image } from "expo-image";
 import { router } from "expo-router";
 import i18next from "i18next";
 import { useEffect, useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const flags = {
+    it: "https://flagcdn.com/it.svg",
+    en: "https://flagcdn.com/gb.svg",
+  };
+
+  const languages = [
+    { code: "it", name: "Italiano" },
+    { code: "en", name: "English" },
+  ];
+
   const [activeButton, setActiveButton] = useState<"music" | "sound">("music");
-  const [isLoading, setIsLoading] = useState(true); // Nuovo stato per il caricamento
+  const [isLoading, setIsLoading] = useState(true);
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,6 +67,13 @@ export default function HomeScreen() {
     }, 500); // Ritardo di 500ms per simulare una chiamata di rete
   };
 
+  const changeLanguage = (lng: string) => {
+    i18next.changeLanguage(lng);
+    setShowLanguageSelector(false);
+  };
+
+  const currentLanguage = i18next.language;
+
   return (
     <SafeAreaView className="flex-1 bg-white pb-10">
       <ScrollView className="px-5">
@@ -65,13 +83,75 @@ export default function HomeScreen() {
             {`${i18next.t("Ciao")}`}, Stefano
           </Text>
 
-          <View className="flex-row gap-2">
+          <View className="flex-row gap-2 items-center relative">
+            {/* Pulsante per la selezione della lingua */}
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() => setShowLanguageSelector(!showLanguageSelector)}
+              className="w-8 h-8 rounded-full overflow-hidden border-2 border-purple-600 items-center justify-center"
+            >
+              <Image
+                source={{ uri: flags[currentLanguage as keyof typeof flags] }}
+                style={{ width: "100%", height: "100%" }}
+                contentFit="cover"
+              />
+            </TouchableOpacity>
+
             <TouchableOpacity
               activeOpacity={0.6}
               onPress={() => router.push("/profile")}
             >
-              <IconSymbol size={28} name="gear" color={"black"} />
+              <IconSymbol size={32} name="gear" color={"black"} />
             </TouchableOpacity>
+
+            {/* Modal per il selettore di lingua */}
+            <Modal
+              visible={showLanguageSelector}
+              transparent={true}
+              animationType="fade"
+              onRequestClose={() => setShowLanguageSelector(false)}
+            >
+              {/* Sfondo semi-trasparente per il tocco */}
+              <TouchableOpacity
+                style={{ flex: 1 }}
+                activeOpacity={1}
+                onPress={() => setShowLanguageSelector(false)}
+              >
+                {/* Contenitore del selettore */}
+                <View className="absolute top-28 right-10 w-40 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                  {languages.map((lng) => (
+                    <TouchableOpacity
+                      key={lng.code}
+                      activeOpacity={0.6}
+                      onPress={() => changeLanguage(lng.code)}
+                      className={`flex-row items-center justify-between p-3 ${
+                        i18next.language === lng.code ? "bg-gray-100" : ""
+                      }`}
+                    >
+                      <View className="flex-row gap-3 items-center">
+                        <Image
+                          source={{
+                            uri: flags[lng.code as keyof typeof flags],
+                          }}
+                          style={{ width: 24, height: 24, borderRadius: 12 }}
+                          className="mr-3"
+                        />
+                        <Text className="font-semibold text-gray-800">
+                          {lng.name}
+                        </Text>
+                      </View>
+                      {i18next.language === lng.code && (
+                        <IconSymbol
+                          size={20}
+                          name="checkmark.circle"
+                          color={"#9333ea"}
+                        />
+                      )}
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </TouchableOpacity>
+            </Modal>
           </View>
         </View>
 

@@ -9,6 +9,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function ProfileScreen() {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const flags = {
+    it: "https://flagcdn.com/it.svg",
+    en: "https://flagcdn.com/gb.svg",
+  };
+
+  const currentLanguage = i18next.language;
   return (
     <SafeAreaView className="flex-1 bg-white pb-10">
       <ScrollView className="px-5">
@@ -62,6 +68,7 @@ export default function ProfileScreen() {
 
           <View className="mt-2">
             <View className="rounded-xl shadow-md bg-white mt-12">
+              {/* Modifica Password */}
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
                 onPress={() => router.push("/screens/changePassword")}
@@ -78,6 +85,33 @@ export default function ProfileScreen() {
                 </View>
               </TouchableOpacity>
 
+              {/* Cambia Lingua */}
+              {/* <TouchableOpacity
+                className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
+                onPress={() => setShowLanguageSelector(true)}
+                activeOpacity={0.5}
+              >
+                <View className="ml-3 p-3 bg-purple-100 rounded-md w-8 h-8 flex-row items-center justify-center">
+                  <IconSymbol size={16} name="globe" color={"#7C3AED"} />
+                </View>
+                <View className="flex-1 flex-row items-center justify-between pr-3">
+                  <Text className="text-lg font-medium text-gray-800">
+                    {`${i18next.t("Lingua")}`}
+                  </Text>
+                  <View className="flex-row items-center">
+                    <Text className="text-sm font-medium text-gray-500 mr-2">
+                      {currentLanguage.toUpperCase()}
+                    </Text>
+                    <IconSymbol
+                      size={16}
+                      name="chevron.right"
+                      color="#9CA3AF"
+                    />
+                  </View>
+                </View>
+              </TouchableOpacity> */}
+
+              {/* Notifiche */}
               <View className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400">
                 <View className="ml-3 p-3 bg-purple-200 rounded-md w-8 h-8 flex-row items-center justify-center">
                   <IconSymbol size={16} name="bell.fill" color={"#7C3AED"} />
@@ -98,6 +132,7 @@ export default function ProfileScreen() {
                 </View>
               </View>
 
+              {/* Musica e Suoni */}
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
                 activeOpacity={0.5}
@@ -114,6 +149,7 @@ export default function ProfileScreen() {
                 </View>
               </TouchableOpacity>
 
+              {/* Obiettivi */}
               <TouchableOpacity
                 className="flex-row items-center rounded-xl bg-white py-3 gap-3 border-b-[0.2px] border-b-gray-400"
                 onPress={() => router.push("/screens/Objectives")}
