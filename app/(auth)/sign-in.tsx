@@ -79,12 +79,20 @@ export default function SignIn() {
               </TouchableOpacity>
             </View>
 
-            {/* Link per tornare indietro */}
             <View className="flex-row justify-center mt-5">
               <Text className="text-white text-sm">
                 Don't have an account?{" "}
                 <Link href="/sign-up" className="font-bold underline">
                   Sign-up
+                </Link>
+              </Text>
+            </View>
+
+            <View className="flex-row justify-center mt-2">
+              <Text className="text-white text-sm">
+                Forgot your password?{" "}
+                <Link href="/forgot-password" className="font-bold underline">
+                  Forgot Password
                 </Link>
               </Text>
             </View>

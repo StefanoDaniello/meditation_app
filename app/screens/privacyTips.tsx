@@ -52,7 +52,10 @@ export default function privacyTips() {
             <IconSymbol size={28} name="chevron.left" color="black" />
           </TouchableOpacity>
           <View className="flex-1 items-center">
-            <Text className="text-xl font-bold">Consigli sulla Privacy</Text>
+            <Text className="text-xl font-bold">
+              {" "}
+              Suggerimenti per la privacy
+            </Text>
           </View>
           <View className="w-8" />
         </View>

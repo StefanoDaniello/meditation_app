@@ -47,7 +47,7 @@ export default function changePassword() {
       });
 
       router.replace("/(tabs)");
-    }, 2000); // Imposta un ritardo di 2 secondi
+    }, 2000);
   };
 
   return (

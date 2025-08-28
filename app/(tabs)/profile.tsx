@@ -51,7 +51,7 @@ export default function ProfileScreen() {
                 </Text>
                 <View className="flex-row justify-between items-center">
                   <Text className="text-lg font-medium rounded-full bg-purple-600 px-2 mr-2 text-white">
-                    2
+                    7
                   </Text>
                   <IconSymbol size={16} name="chevron.right" color="#9CA3AF" />
                 </View>
